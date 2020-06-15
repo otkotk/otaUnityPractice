@@ -25,7 +25,7 @@ public class GravityController : MonoBehaviour
         {
             //キーの入力を検知し、ベクトルを設定
             vector.x = Input.GetAxis("Horizontal");
-            vector.y = Input.GetAxis("Vertical");
+            vector.z = Input.GetAxis("Vertical");
 
             //高さ方向の判定はキーのzとする
             if(Input.GetKey("z"))
