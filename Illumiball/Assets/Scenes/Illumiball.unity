@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3207595, g: 0.3580928, b: 0.41682974, a: 0.5}
+  m_IndirectSpecularColor: {r: 0.32075915, g: 0.3580927, b: 0.4168295, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c87a8eb4f784c30b4edb19c9421c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: HoleRed
+  targetTag: BallRed
 --- !u!1 &1690331073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,7 +1983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c87a8eb4f784c30b4edb19c9421c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: HoleGreen
+  targetTag: BallGreen
 --- !u!1 &1972796182
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,7 +2042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c87a8eb4f784c30b4edb19c9421c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: HoleBlue
+  targetTag: BallBlue
 --- !u!1 &2060190512
 GameObject:
   m_ObjectHideFlags: 0

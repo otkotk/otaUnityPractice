@@ -4,22 +4,47 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour
 {
-    //どのボールを吸い寄せるかをタグで指定
+    // どのボールを吸い寄せるかをタグで指定
     public string targetTag;
+    bool isHolding;
 
-    private void OnTriggerStay(Collider other)
+    // ボールが入っているかを返す
+    public bool IsHolding()
     {
-        //Colliderに触れているオブジェクトのRigidbodyコンポーネントを取得
+        return isHolding;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == targetTag)
+        {
+            isHolding = true;
+        }
+        Debug.Log(isHolding);
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == targetTag)
+        {
+            isHolding = false;
+        }
+        Debug.Log(isHolding);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        // コライダに触れているオブジェクトのRigidbodyコンポーネントを取得
         Rigidbody r = other.gameObject.GetComponent<Rigidbody>();
 
-        //ボールがどの方向にあるかを計算
+        // ボールがどの方向にあるかを計算
         Vector3 direction = other.gameObject.transform.position - transform.position;
         direction.Normalize();
 
-        //タグに応じてボールに力を加える
-        if(other.gameObject.tag == targetTag)
+        // タグに応じてボールに力を加える
+        if (other.gameObject.tag == targetTag)
         {
-            //中心地点でボールを止めるため速度を減速させる
+            // 中心地点でボールを止めるため速度を減速させる
             r.velocity *= 0.9f;
             r.AddForce(direction * -20.0f, ForceMode.Acceleration);
         }
