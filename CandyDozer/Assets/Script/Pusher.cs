@@ -20,7 +20,6 @@ public class Pusher : MonoBehaviour
     {
         //変位を計算
         float z = amplitude * Mathf.Sin(Time.time * speed); //移動量の計算
-        Debug.Log(z);
 
         //zを変位させたポジションに再設定
         transform.localPosition = startPosition + new Vector3(0, 0, z); //ポジションの反映 Vector3(y,x,z)
