@@ -7,7 +7,7 @@ public class CandyDestroyer : MonoBehaviour
     public CandyManager candyManager;
     public int reward;
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Candy")
         {

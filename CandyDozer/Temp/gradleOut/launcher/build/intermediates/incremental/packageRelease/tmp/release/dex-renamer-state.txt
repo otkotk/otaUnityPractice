@@ -1,0 +1,4 @@
+#Thu Jun 18 21:23:11 JST 2020
+base.0=/Users/ota.kou/UnityProjectFolder/otaUnityPractice/CandyDozer/Temp/gradleOut/launcher/build/intermediates/transforms/dexMerger/release/0
+path.0=classes.dex
+renamed.0=classes.dex
