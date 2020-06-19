@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    const int MaxShotPower = 5;
+    const int MaxShotPower = 8;
     const int RecoverySeconds = 3;
 
     int shotPower = MaxShotPower;
+    AudioSource shotSound;
 
     public GameObject[] candyPrefabs;
     public Transform candyParentTransform;
@@ -15,6 +16,11 @@ public class Shooter : MonoBehaviour
     public float shotForce;
     public float shotTorque;
     public float baseWidth;
+
+    void Start()
+    {
+        shotSound = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -61,6 +67,9 @@ public class Shooter : MonoBehaviour
         candyManager.ConsumeCandy();
         //ShotPowerを消費
         ConsumePower();
+
+        //サウンドを再生
+        shotSound.Play();
     }
 
     void OnGUI()
