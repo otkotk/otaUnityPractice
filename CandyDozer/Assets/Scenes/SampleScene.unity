@@ -2691,9 +2691,10 @@ MonoBehaviour:
   - {fileID: 5484873433780780979, guid: b1240c55d0b544daab35f5f4955c7491, type: 3}
   candyParentTransform: {fileID: 1187250551}
   candyManager: {fileID: 2045617879}
-  shotForce: 630
+  shotForce: 570
   shotTorque: 30
   baseWidth: 5
+  baseHeight: 5
 --- !u!4 &1942896243
 Transform:
   m_ObjectHideFlags: 0

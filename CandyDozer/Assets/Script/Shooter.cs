@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    const int MaxShotPower = 8;
+    const int MaxShotPower = 10;
     const int RecoverySeconds = 3;
 
     int shotPower = MaxShotPower;
@@ -16,10 +16,15 @@ public class Shooter : MonoBehaviour
     public float shotForce;
     public float shotTorque;
     public float baseWidth;
+    public float baseHeight;
 
     void Start()
     {
         shotSound = GetComponent<AudioSource>();
+        foreach(GameObject i in candyPrefabs)
+        {
+            Debug.Log(i);
+        }
     }
 
     // Update is called once per frame
@@ -39,7 +44,8 @@ public class Shooter : MonoBehaviour
     {
         //画面のサイズとInputの割合からキャンディ生成のポジションを計算
         float x = baseWidth * (Input.mousePosition.x / Screen.width) - (baseWidth / 2);
-        return transform.position + new Vector3(x, 0, 0);
+        float y = baseHeight * (Input.mousePosition.y / Screen.height);
+        return transform.position + new Vector3(x, y, 0);
     }
 
     public void Shot()
