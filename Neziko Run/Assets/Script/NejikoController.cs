@@ -117,11 +117,10 @@ public class NejikoController : MonoBehaviour
             recoverTime = StunDuration;
 
             // ダメージトリガーを設定
+            transform.Translate(0, 0, -1);
             animator.SetTrigger("damage");
 
             // (改良)少し後ろに下がる
-            float acceleratedZ = moveDirection.z - (accelerationZ * Time.deltaTime);
-            moveDirection.z = Mathf.Clamp(acceleratedZ, 0, speedZ);
 
             // ヒットしたオブジェクトは削除
             Destroy(hit.gameObject);
