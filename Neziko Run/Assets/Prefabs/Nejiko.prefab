@@ -147,8 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: 20
-  speedZ: 5
-  speedX: 3
+  speedZ: 10
+  speedX: 10
   speedJump: 8
   accelerationZ: 10
 --- !u!1 &983011478055009878
