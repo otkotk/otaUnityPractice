@@ -45,6 +45,9 @@ public class AzarashiController : MonoBehaviour
         // 死んだらはばたけない
         if (isDead) return;
 
+        // 重力が効いていない時は操作しない
+        if (rb2d.isKinematic) return;
+
         // Velocityを直接書き換えて上方向に加速
         rb2d.velocity = new Vector2(0.0f, flapVelocity);
     }
@@ -75,7 +78,16 @@ public class AzarashiController : MonoBehaviour
     {
         if (isDead) return;
 
+        // クラッシュエフェクト
+        Camera.main.SendMessage("Clash");
+
         // 何かにぶつかったら死亡フラグをたてる
         isDead = true;
+    }
+
+    public void SetStreetActive(bool active)
+    {
+        // Rigidbodyのオン、オフを切り替える
+        rb2d.isKinematic = !active;
     }
 }
