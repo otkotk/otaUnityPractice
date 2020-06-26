@@ -28,7 +28,7 @@ public class AzarashiController : MonoBehaviour
     void Update()
     {
         // 最高高度に達していない場合に限り、タップの入力を受け付ける
-        if(Input.GetButtonDown("Fire1") && transform.position.y < maxHeight)
+        if ((Input.GetButtonDown("Fire1") || Input.GetKeyDown("space") || Input.GetKeyDown("right")) && transform.position.y < maxHeight)
         {
             Flap();
         }

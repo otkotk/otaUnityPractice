@@ -51,6 +51,7 @@ public class NejikoController : MonoBehaviour
         if (IsStun())
         {
             // 動きを止め、気絶状態からの復帰カウントを進める
+            transform.Translate(0, 5, -2);
             moveDirection.x = 0.0f;
             moveDirection.z = 0.0f;
             recoverTime -= Time.deltaTime;
@@ -117,7 +118,7 @@ public class NejikoController : MonoBehaviour
             recoverTime = StunDuration;
 
             // ダメージトリガーを設定
-            transform.Translate(0, 0, -1);
+            
             animator.SetTrigger("damage");
 
             // (改良)少し後ろに下がる

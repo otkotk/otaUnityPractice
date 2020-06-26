@@ -68,27 +68,27 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11172}
+      Script: {instanceID: 11210}
     - Class: 114
-      Script: {instanceID: 11304}
+      Script: {instanceID: 11342}
     - Class: 114
-      Script: {instanceID: 11462}
+      Script: {instanceID: 11500}
     - Class: 114
-      Script: {instanceID: 11624}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 12178}
+      Script: {instanceID: 12216}
     - Class: 114
-      Script: {instanceID: 12426}
+      Script: {instanceID: 12464}
     - Class: 114
-      Script: {instanceID: 12790}
+      Script: {instanceID: 12828}
     - Class: 114
-      Script: {instanceID: 13638}
+      Script: {instanceID: 12836}
     - Class: 114
-      Script: {instanceID: 14248}
+      Script: {instanceID: 13354}
     - Class: 114
-      Script: {instanceID: 14822}
+      Script: {instanceID: 13678}
     - Class: 114
-      Script: {instanceID: 15368}
+      Script: {instanceID: 14288}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -400,6 +400,12 @@ ScriptsOnlyBuild:
     className: ScrollObject
   - hash:
       serializedVersion: 2
+      Hash: e58ec7855f5c5d693661ff7d7d29d277
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameController
+  - hash:
+      serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -476,6 +482,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: Physics2DRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ClearTrigger
   - hash:
       serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3
@@ -620,19 +632,7 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: e58ec7855f5c5d693661ff7d7d29d277
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GameController
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ClearTrigger
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: /Users/ota.kou/UnityProjectFolder/otaUnityPractice/FlappyAzarashi/FLAP_azarashi_android.aab
+  playerPath: C:/Users/JS205/unityProjectFolder/otaUnityPractice/FlappyAzarashi/FLAP_azarashi.apk
