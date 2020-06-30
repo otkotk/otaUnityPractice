@@ -4,15 +4,18 @@ using System;
 
 public class Slime : Enemies
 {
-    private int weapon;
-    public int Weapon { get { return this.weapon; } set { this.weapon = value; } }
+    private int weaponPlusAttack;
+    public int WeaponPlusAttack { get { return this.weaponPlusAttack; } set { this.weaponPlusAttack = value; } }
+
+    private string bringWeapon = "w000";
+    public string BringWeapon { get { return this.bringWeapon; } }
 
     Weapon we = new Weapon();
     // コンストラクター
     public Slime()
     {
-        we.SelectWeapon("w000");
-        Weapon = we.ATK;
+        we.SelectWeapon(bringWeapon);
+        weaponPlusAttack = we.ATK;
     }
 
     public override int NomalAttack(Player p)
@@ -20,17 +23,17 @@ public class Slime : Enemies
         throw new System.NotImplementedException();
     }
 
-    public override int NomalDefend()
+    public override int NomalDefend(Player p)
     {
         throw new System.NotImplementedException();
     }
 
-    public override bool RunEscape()
+    public override bool RunEscape(Player p)
     {
         throw new System.NotImplementedException();
     }
 
-    public override void UseItem()
+    public override void UseItem(Player p)
     {
         throw new System.NotImplementedException();
     }

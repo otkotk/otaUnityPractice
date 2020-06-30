@@ -14,12 +14,6 @@ public class Main : MonoBehaviour
         Debug.Log(we.Name);
 
         Slime slime = new Slime();
-        Debug.Log(slime.Weapon);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log(slime.WeaponPlusAttack);
     }
 }

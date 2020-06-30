@@ -19,13 +19,16 @@
     private int mental;
     public int Mental { get { return this.mental; } set { this.mental = value; } }
 
+    private int agi;
+    public int AGI { get { return this.agi; } set { this.agi = value; } }
+
     private int exp = 0; //現在の総経験値
     public int EXP { get { return this.exp; } set { this.exp = value; } }
 
     private int[] pocket = new int[7]; //アイテム入れ
 
     // public abstract int NomalAttack();
-    public abstract int NomalDefend();
-    public abstract bool RunEscape();
-    public abstract void UseItem();
+    //public abstract int NomalDefend();
+    //public abstract bool RunEscape();
+    //public abstract void UseItem();
 }
