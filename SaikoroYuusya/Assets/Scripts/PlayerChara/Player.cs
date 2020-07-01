@@ -20,17 +20,23 @@ public class Player : AbsCharacter
     private int armor;
     public int Armor { get { return this.armor; } set { this.armor = value; } }
 
+    private int weaponAttribute; //初期値は打撃
+    public int WeaponAttribute { get { return this.weaponAttribute; } set { this.weaponAttribute = value; } }
+
     // コンストラクター
-    private Player(string name, int hp, int mp, int atk, int def, int mental, int agi, int exp)
+    public Player(string name)
     {
-        name = "名無しさん";
-        hp = 100;
-        mp = 15;
-        atk = 5;
-        def = 5;
-        mental = 3;
-        agi = 5;
-        exp = 0;
+        Weapon www = new Weapon();
+        www.SelectWeapon("w100");
+        this.Name = name;
+        HP = 100;
+        MP = 15;
+        ATK = 5;
+        DEF = 5;
+        Mental = 3;
+        AGI = 5;
+        EXP = 0;
+        weaponAttribute = www.WeaponAttribute;
     }
 
     // メソッド
@@ -41,6 +47,7 @@ public class Player : AbsCharacter
         {
             case 0:
                 Console.WriteLine("無職です");
+                if (thresholdExp == 20) Console.WriteLine("まだまだやなぁ");
                 break;
             case 1:
                 Console.WriteLine("剣士です。 HP:1.5倍 DEF:1.5倍 Mental:0.5倍");

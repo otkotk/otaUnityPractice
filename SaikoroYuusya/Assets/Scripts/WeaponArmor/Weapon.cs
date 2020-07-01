@@ -15,11 +15,11 @@ public class Weapon
     public int Mental { get { return this.mental; } }
 
     // weaponAttribute 0:斬撃 1:打撃 2:刺突 3:投擲
-    private int weaponAttribute = 0;
+    private int weaponAttribute;
     public int WeaponAttribute { get { return this.weaponAttribute; } }
 
     // magicAttribute 0:無 1:火 2:水 3:電気 4:氷 5:土 6:光 7:闇
-    private int magicAttribute = 0;
+    private int magicAttribute;
     public int MagicAtrribute { get { return this.magicAttribute; } }
 
     public void SelectWeapon(string weaponID)

@@ -15,5 +15,8 @@ public class Main : MonoBehaviour
 
         Slime slime = new Slime();
         Debug.Log(slime.WeaponPlusAttack);
+
+        Player p = new Player("名無しさん");
+        Debug.Log(p.WeaponAttribute);
     }
 }
