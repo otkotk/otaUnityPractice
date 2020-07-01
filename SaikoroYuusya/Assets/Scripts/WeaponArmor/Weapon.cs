@@ -12,10 +12,15 @@ public class Weapon
     public int ATK { get { return this.atk; } }
 
     private int mental = 0;
+    public int Mental { get { return this.mental; } }
+
     // weaponAttribute 0:斬撃 1:打撃 2:刺突 3:投擲
     private int weaponAttribute = 0;
+    public int WeaponAttribute { get { return this.weaponAttribute; } }
+
     // magicAttribute 0:無 1:火 2:水 3:電気 4:氷 5:土 6:光 7:闇
     private int magicAttribute = 0;
+    public int MagicAtrribute { get { return this.magicAttribute; } }
 
     public void SelectWeapon(string weaponID)
     {
@@ -37,6 +42,14 @@ public class Weapon
                 case "w002":
                     name = "長ナイフ";
                     atk = 12;
+                    break;
+                case "w003":
+                    name = "メタルソード";
+                    atk = 12;
+                    break;
+                case "w004":
+                    name = "乂夕ﾉレソ一卜゛";
+                    atk = 999;
                     break;
             }
         }
