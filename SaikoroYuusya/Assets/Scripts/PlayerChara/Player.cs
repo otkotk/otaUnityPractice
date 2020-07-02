@@ -23,6 +23,7 @@ public class Player : AbsCharacter
     private int weaponAttribute; //初期値は打撃
     public int WeaponAttribute { get { return this.weaponAttribute; } set { this.weaponAttribute = value; } }
 
+    // メソッド内でインスタンス生成できるっぽい
     // コンストラクター
     public Player(string name)
     {
