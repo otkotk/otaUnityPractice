@@ -124,26 +124,5 @@ public class Player : AbsCharacter
         return (HP, MP, ATK, DEF, Mental, AGI);
     }
 
-    // 継承してきたメソッドを実装
     // 通常攻撃のロジック(暫定) -> (this.atk * 5) / 3 * 1.25
-    public int NomalAttack(Enemies e)
-    {
-        throw new NotImplementedException();
-    }
-
-    public int NomalDefend(Enemies e)
-    {
-        throw new NotImplementedException();
-    }
-
-    public bool RunEscape(Enemies e)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void UseItem(Enemies e)
-    {
-        throw new NotImplementedException();
-    }
-
 }

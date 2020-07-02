@@ -24,6 +24,7 @@ public class Weapon
 
     public void SelectWeapon(string weaponID)
     {
+        if (weaponID == null) return;
         // w000:斬撃武器 w100:打撃武器 w200:刺突武器 w300:投擲武器
         if (weaponID.Substring(1,1) == "0")
         {
