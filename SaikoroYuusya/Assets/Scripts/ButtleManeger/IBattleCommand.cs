@@ -7,6 +7,8 @@ public interface IBattleCommand
     // 全体攻撃とかどうするんだ
     void NomalAttack(int damage, int weaponAttr, int magicAttr);
 
+    // 攻撃を受けるインターフェイス。
+
     // 「まほう」インターフェイス。
     void MagicAttack(int damage, int magicAttr);
 

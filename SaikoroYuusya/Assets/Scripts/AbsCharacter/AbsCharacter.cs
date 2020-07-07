@@ -27,6 +27,20 @@
 
     private int[] pocket = new int[7]; //アイテム入れ
 
+    private string weapon;
+    public string Weapon { get { return this.weapon; } set { this.weapon = value; } }
+
+    private int weaponAttribute;
+    public int WeaponAttribute { get { return this.weaponAttribute; } set { this.weaponAttribute = value; } }
+
+    private string armor;
+    public string Armor { get { return this.armor; } set { this.armor = value; } }
+
+    private int armorAtrribute;
+    public int ArmorAttribute { get { return this.armorAtrribute; } set { this.armorAtrribute = value; } }
+
+
+
     // public abstract int NomalAttack();
     //public abstract int NomalDefend();
     //public abstract bool RunEscape();

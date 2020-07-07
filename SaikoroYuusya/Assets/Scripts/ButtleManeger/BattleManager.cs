@@ -12,37 +12,27 @@ public class BattleManager : MonoBehaviour
 
     // Enemyの数を決める。
     private int enemyEncounter;
-    private Action[] enemySelectArr;
-    private Enemies[] enemies = new Enemies[4];
+    //private Action[] enemySelectArr;
+    // private Enemies[] enemies = new Enemies[4];
+    private IBattleCommand[] enemies = new IBattleCommand[4];
+    private int[] enemySelectArr = new int[4];
 
     // Enemyが入っている配列。
     // Enemyクラスの分だけ、配列を追加していく。
     // デリゲートメソッドの数と同じにする。
-    private void EnemySet()
-    {
-        enemySelectArr = new Action[1];
-        enemySelectArr[0] = DeleSlime;
-        // enemySelectArr[1] = DeleThief;
-        // enemySelectArr[2] = DelePot;
-    }
+    //private void EnemySet()
+    //{
+    //    enemySelectArr = new Action[1];
+    //    enemySelectArr[0] = DeleSlime;
+    //    enemySelectArr[1] = DeleThief;
+    //    enemySelectArr[2] = DelePot;
+    //}
 
     // Use this for initialization
     void Start()
     {
-        EnemySet();
-        enemySelectArr[0]();
         EnemyAppearanceRandom();
         Debug.Log(enemyEncounter);
-
-        enemies[0] = new Slime();
-        Enemies e1 = new Slime();
-        e1.TestText();
-        Slime s1 = new Slime();
-
-        for(int i=0; i<enemyEncounter; i++)
-        {
-
-        }
     }
 
     // Update is called once per frame
@@ -86,17 +76,15 @@ public class BattleManager : MonoBehaviour
         for(int i=0; i<enemyEncounter; i++)
         {
             int j = random.Next(0, 2);
-            enemySelectArr[j]();
         }
     }
 
     // Enemyをランダムで選択するデリゲート
     // Enemyクラスの分だけ、デリゲートを書いていく。
-    private void DeleSlime()
-    {
-        Enemies slime = new Slime(); 
-        
-    }
+    //private void DeleSlime()
+    //{
+    //    Enemies slime = new Slime(); 
+    //}
     // private void DeleThief() { }
     // private void DelePot() { }
 }

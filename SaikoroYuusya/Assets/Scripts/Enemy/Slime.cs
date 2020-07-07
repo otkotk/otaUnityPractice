@@ -23,7 +23,7 @@ public class Slime : Enemies
         Mental = 1;
         AGI = 1;
         EXP = 5;
-        Debug.Log("呼ばれたよぉ");
+        Debug.Log("スライムが呼ばれたよぉ");
     }
 
     public void NomalAttackAccept(int damage)
@@ -33,6 +33,6 @@ public class Slime : Enemies
 
     public override void TestText()
     {
-        Debug.Log("複数体呼びだすぞー");
+        Debug.Log("スライムです＾＾");
     }
 }
