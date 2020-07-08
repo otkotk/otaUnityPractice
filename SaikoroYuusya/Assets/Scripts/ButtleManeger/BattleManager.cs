@@ -32,7 +32,6 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         EnemyAppearanceRandom();
-        Debug.Log(enemyEncounter);
     }
 
     // Update is called once per frame
@@ -43,6 +42,7 @@ public class BattleManager : MonoBehaviour
     public void NomalAttack()
     {
         GameObject EnemyTag = GameObject.FindWithTag("selected");
+        EnemyTag.GetComponent<EnemyInstance>;
         damage = (player.ATK * 5) / 3 * 1.25;
     }
 

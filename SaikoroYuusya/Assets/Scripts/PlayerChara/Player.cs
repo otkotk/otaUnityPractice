@@ -1,6 +1,6 @@
 ﻿using System;
 using Unity.Collections.LowLevel.Unsafe;
-using UnityEngine.Networking;
+using UnityEngine;
 
 public class Player : AbsCharacter
 {
@@ -8,28 +8,19 @@ public class Player : AbsCharacter
     private int job; //職業
     public int Job { get { return this.job; } }
 
-    private int level = 1; //レベル
+    private int level; //レベル
     public int Level { get { return this.level; } }
 
-    private int thresholdExp = 20; //経験値が閾値を超えたら、レベルアップ
+    private int thresholdExp; //経験値が閾値を超えたら、レベルアップ
     public int ThresholdExp { get { return this.thresholdExp; } set { this.thresholdExp = value; } }
-
-    private int weapon;
-    public int Weapon { get { return this.weapon; } set { this.weapon = value; } }
-
-    private int armor;
-    public int Armor { get { return this.armor; } set { this.armor = value; } }
-
-    private int weaponAttribute; //初期値は打撃
-    public int WeaponAttribute { get { return this.weaponAttribute; } set { this.weaponAttribute = value; } }
 
     // メソッド内でインスタンス生成できるっぽい
     // コンストラクター
-    public Player(string name)
+    public Player()
     {
         Weapon www = new Weapon();
         www.SelectWeapon("w100");
-        this.Name = name;
+        Name = "名無しさん";
         HP = 100;
         MP = 15;
         ATK = 5;
@@ -37,7 +28,11 @@ public class Player : AbsCharacter
         Mental = 3;
         AGI = 5;
         EXP = 0;
-        weaponAttribute = www.WeaponAttribute;
+        job = 0;
+        level = 1;
+        thresholdExp = 20;
+        WeaponAttribute = www.WeaponAttribute;
+        Debug.Log("主人公が呼ばれたゾ");
     }
 
     // メソッド
@@ -74,8 +69,8 @@ public class Player : AbsCharacter
         {
             level++;
             thresholdExp = level * 10;
-            double _HPup = 30.0;
-            double _MPup = 5.0;
+            double _HPup = 15.0;
+            double _MPup = 4.0;
             double _ATKup = 2.0;
             double _DEFup = 2.0;
             double _Mentalup = 2.0;
@@ -124,6 +119,4 @@ public class Player : AbsCharacter
 
         return (HP, MP, ATK, DEF, Mental, AGI);
     }
-
-    // 通常攻撃のロジック(暫定) -> (this.atk * 5) / 3 * 1.25
 }
