@@ -7,7 +7,7 @@ public class BattleManager : MonoBehaviour
 {
     public GameObject EnemyObject;
     public GameObject Player;
-    Player player;
+
     public double damage;
 
     // Enemyの数を決める。
@@ -31,6 +31,11 @@ public class BattleManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        EnemyObject = GameObject.FindWithTag("selected");
+        Player = GameObject.FindWithTag("PlayerTag");
+        EnemyObject.GetComponent<EnemyInstance>();
+        Player.GetComponent<PlayerInstance>().NomalAttack();
+
         EnemyAppearanceRandom();
     }
 
@@ -41,9 +46,6 @@ public class BattleManager : MonoBehaviour
 
     public void NomalAttack()
     {
-        GameObject EnemyTag = GameObject.FindWithTag("selected");
-        EnemyTag.GetComponent<EnemyInstance>;
-        damage = (player.ATK * 5) / 3 * 1.25;
     }
 
     // Enemyの数を決めるメソッド。

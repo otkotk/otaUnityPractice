@@ -33,17 +33,22 @@
     private int weaponAttribute;
     public int WeaponAttribute { get { return this.weaponAttribute; } set { this.weaponAttribute = value; } }
 
+    private int weaponMagicAttribute;
+    public int WeaponMagicAttribute { get { return this.weaponMagicAttribute; } set { this.weaponMagicAttribute = value; } }
+
     private int weaponWeakAttribute;
     public int WeaponWeakAttribute { get { return this.weaponWeakAttribute; } set { this.weaponWeakAttribute = value; } }
 
     private string armor;
     public string Armor { get { return this.armor; } set { this.armor = value; } }
 
+    // 武器属性に対する耐性。ダメージを1/3カットする。弱点と耐性が同じだった場合、ダメージは等倍になる。
     private int armorAtrribute;
     public int ArmorAttribute { get { return this.armorAtrribute; } set { this.armorAtrribute = value; } }
 
-    private int magicAttribute;
-    public int MagicAttribute { get { return this.magicAttribute; } set { this.magicAttribute = value; } }
+    // 魔法属性に対する耐性。ダメージを1/3カットする。弱点と耐性が同じだった場合、ダメージは等倍になる。
+    private int magicWeakAttribute;
+    public int MagicWeakAttribute { get { return this.magicWeakAttribute; } set { this.magicWeakAttribute = value; } }
 
     // public abstract int NomalAttack();
     //public abstract int NomalDefend();

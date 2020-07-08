@@ -19,7 +19,6 @@ public class Player : AbsCharacter
     public Player()
     {
         Weapon www = new Weapon();
-        www.SelectWeapon("w100");
         Name = "名無しさん";
         HP = 100;
         MP = 15;
@@ -28,10 +27,14 @@ public class Player : AbsCharacter
         Mental = 3;
         AGI = 5;
         EXP = 0;
+        BringWeapon = "w100";
+        www.SelectWeapon("w100");
+        WeaponAttribute = www.WeaponAttribute;
+        WeaponWeakAttribute = 0;
+
         job = 0;
         level = 1;
         thresholdExp = 20;
-        WeaponAttribute = www.WeaponAttribute;
         Debug.Log("主人公が呼ばれたゾ");
     }
 
