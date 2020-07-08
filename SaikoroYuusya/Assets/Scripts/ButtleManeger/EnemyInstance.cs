@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class EnemyInstance : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        Enemies slime = new Slime();
-    }
+    Enemies slime = new Slime();
 
-    // Update is called once per frame
-    void Update()
+    public void umasi()
     {
-        
+        Debug.Log("タグから呼ばれたよぉー");
     }
 }

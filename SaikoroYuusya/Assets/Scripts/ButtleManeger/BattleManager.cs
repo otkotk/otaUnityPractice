@@ -5,9 +5,6 @@ using System;
 
 public class BattleManager : MonoBehaviour
 {
-    public GameObject EnemyObject;
-    public GameObject Player;
-
     public double damage;
 
     // Enemyの数を決める。
@@ -31,21 +28,31 @@ public class BattleManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        EnemyObject = GameObject.FindWithTag("selected");
-        Player = GameObject.FindWithTag("PlayerTag");
-        EnemyObject.GetComponent<EnemyInstance>();
-        Player.GetComponent<PlayerInstance>().NomalAttack();
-
         EnemyAppearanceRandom();
+        GameObject Player = GameObject.FindWithTag("PlayerTag");
+        Player.GetComponent<PlayerInstance>().DisplayStatus();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonUp(0)) testtesttest();
     }
 
+    public void testtesttest()
+    {
+        GameObject Player = GameObject.FindWithTag("PlayerTag");
+        Player.GetComponent<PlayerInstance>().SetPlayerJob(1);
+        Player.GetComponent<PlayerInstance>().DisplayStatus();
+    }
+
+    // 「こうげき」ボタン
     public void NomalAttack()
     {
+        GameObject EnemyObject = GameObject.FindWithTag("Selected");
+        EnemyObject.GetComponent<EnemyInstance>();
+        GameObject Player = GameObject.FindWithTag("PlayerTag");
+        Player.GetComponent<PlayerInstance>().NomalAttack();
     }
 
     // Enemyの数を決めるメソッド。

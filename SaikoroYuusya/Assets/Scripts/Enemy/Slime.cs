@@ -7,17 +7,18 @@ public class Slime : Enemies
     // コンストラクター
     public Slime()
     {
-        Weapon www = new Weapon();
-        www.SelectWeapon(BringWeapon);
-        WeaponAttribute = www.WeaponAttribute;
-        HP = 100;
-        MP = 10;
-        ATK = 3;
-        DEF = 1;
-        Mental = 1;
+        Name = "スライム";
+        HP = 15;
+        MP = 0;
+        ATK = 1;
+        DEF = 0;
+        Mental = 0;
         AGI = 1;
-        EXP = 5;
-        Debug.Log("スライムが呼ばれたよぉ");
+        EXP = 3;
+        BringWeapon = null;
+        BringArmor = null;
+        WeaponWeakAttribute = 0;
+        MagicAttribute = 2;
     }
 
     public void NomalAttackAccept(int damage)

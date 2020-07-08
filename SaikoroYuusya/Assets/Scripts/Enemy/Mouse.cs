@@ -7,13 +7,18 @@ public class Mouse : Enemies
     // コンストラクター
     public Mouse()
     {
-        HP = 15;
+        Name = "ヌットリア";
+        HP = 18;
         MP = 0;
         ATK = 2;
         DEF = 0;
-        Mental = 1;
-        AGI = 1;
-        EXP = 3;
+        Mental = 0;
+        AGI = 8;
+        EXP = 4;
+        BringWeapon = null;
+        BringArmor = null;
+        WeaponWeakAttribute = 0;
+        MagicAttribute = 0;
     }
 
     public override void TestText()

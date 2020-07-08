@@ -18,7 +18,7 @@ public class Weapon
     private int weaponAttribute;
     public int WeaponAttribute { get { return this.weaponAttribute; } }
 
-    // magicAttribute 0:無 1:火 2:水 3:電気 4:氷 5:土 6:光 7:闇
+    // magicAttribute 0:無 1:火 2:水 3:電気 4:土 5:氷 6:光 7:闇
     private int weaponMagicAttribute;
     public int WeaponMagicAttribute { get { return this.weaponMagicAttribute; } }
 
