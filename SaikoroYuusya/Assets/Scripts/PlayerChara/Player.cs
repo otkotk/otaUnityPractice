@@ -20,7 +20,7 @@ public class Player : AbsCharacter, IBattleCommand
     {
         Weapon www = new Weapon();
         Armor aaa = new Armor();
-        BringWeapon = "w100";
+        BringWeapon = null;
         www.SelectWeapon(BringWeapon);
         BringArmor = "a200";
         aaa.SelectArmor(BringArmor);
@@ -88,8 +88,9 @@ public class Player : AbsCharacter, IBattleCommand
     // 経験値の管理、レベルアップ
     // ジョブによって倍率を変える
     // ステータス確認のため、タプる
-    public (int, int, int, int, int, int) PlayerExpManager()
+    public void PlayerExpManager(int getEXP)
     {
+        EXP += getEXP;
         if(EXP >= thresholdExp)
         {
             level++;
@@ -141,8 +142,6 @@ public class Player : AbsCharacter, IBattleCommand
                     break;
             }
         }
-
-        return (HP, MP, ATK, DEF, Mental, AGI);
     }
 
     // 通常攻撃のインターフェイスを実装
@@ -153,8 +152,8 @@ public class Player : AbsCharacter, IBattleCommand
         Weapon weapon = new Weapon();
         weapon.SelectWeapon(BringWeapon);
         double damage = (ATK + weapon.ATK) * 5 / 3 * 1.25;
-        int weAttr = WeaponAttribute;
-        int maAttr = MagicAttribute;
+        int weAttr = weapon.WeaponAttribute;
+        int maAttr = weapon.WeaponMagicAttribute;
 
         return ((int)damage, weAttr, maAttr);
     }

@@ -34,12 +34,12 @@
 
     // 武器属性などは、フィールドに格納するのではなく、都度呼び出して使った方がイケメンかも^o^
     // 武器属性(いらないかも)
-    private int weaponAttribute;
-    public int WeaponAttribute { get { return this.weaponAttribute; } set { this.weaponAttribute = value; } }
+    //private int weaponAttribute;
+    //public int WeaponAttribute { get { return this.weaponAttribute; } set { this.weaponAttribute = value; } }
 
     // 武器に付与されている魔法属性(いらないかも)
-    private int weaponMagicAttribute;
-    public int WeaponMagicAttribute { get { return this.weaponMagicAttribute; } set { this.weaponMagicAttribute = value; } }
+    //private int weaponMagicAttribute;
+    //public int WeaponMagicAttribute { get { return this.weaponMagicAttribute; } set { this.weaponMagicAttribute = value; } }
 
     // キャラの武器属性の弱点
     private int weaponWeakAttribute;
@@ -50,8 +50,8 @@
     public string BringArmor { get { return this.bringArmor; } set { this.bringArmor = value; } }
 
     // 盾^^; 両手武器とかは余裕があったら作るゾ
-    private string shield;
-    public string Shield { get { return this.shield; } set { this.shield = value; } }
+    //private string shield;
+    //public string Shield { get { return this.shield; } set { this.shield = value; } }
 
     // 武器属性に対する耐性。ダメージを1/3カットする。弱点と耐性が同じだった場合、ダメージは等倍になる。
     // (いらないかも)

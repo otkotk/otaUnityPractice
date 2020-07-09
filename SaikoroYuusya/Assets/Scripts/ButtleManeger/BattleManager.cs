@@ -33,10 +33,9 @@ public class BattleManager : MonoBehaviour
         GameObject Player = GameObject.FindWithTag("PlayerTag");
 
         (int damage, int weAttr, int maAttr) dSet = Player.GetComponent<PlayerInstance>().NomalAttack();
-        Debug.Log(dSet.damage + "ダメージ  " + dSet.weAttr + "武器属性  " + dSet.maAttr + "魔法属性  ");
-        Debug.Log("EnemyAttackAcceptの後にEnemyに○○ダメージを与えた、みたいなテキストを表示する");
+        Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
 
-        StartCoroutine("EnemyAttackAccept");
+        //StartCoroutine("EnemyAttackAccept");
     }
     //IEnumerator EnemyAttackAccept()
     //{
