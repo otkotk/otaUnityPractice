@@ -2,7 +2,7 @@
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
-public class Player : AbsCharacter
+public class Player : AbsCharacter, IBattleCommand
 {
     // フィールド
     private int job; //職業
@@ -53,7 +53,8 @@ public class Player : AbsCharacter
             + " Mental:" + Mental
             + " AGI:" + AGI
             + " EXP:" + EXP
-            + " アイテム:" + Pocket[0]);
+            + " アイテム:" + Pocket[0]
+            + "ジョブ:" + job);
     }
 
     // プレイヤーのジョブを決める
@@ -142,5 +143,19 @@ public class Player : AbsCharacter
         }
 
         return (HP, MP, ATK, DEF, Mental, AGI);
+    }
+
+    // 通常攻撃のインターフェイスを実装
+    public (int, int, int) NomalAttack()
+    {
+        // ((5+6)*5)/3*1.25 = 22
+        // 22-5 = 17ダメージ
+        Weapon weapon = new Weapon();
+        weapon.SelectWeapon(BringWeapon);
+        double damage = (ATK + weapon.ATK) * 5 / 3 * 1.25;
+        int weAttr = WeaponAttribute;
+        int maAttr = MagicAttribute;
+
+        return ((int)damage, weAttr, maAttr);
     }
 }

@@ -21,13 +21,14 @@ public class Slime : Enemies
         MagicAttribute = 2;
     }
 
-    public void NomalAttackAccept(int damage)
+    // Enemiesの行動を選択する
+    // 序盤は攻撃しかしない。
+    // Playerの行動の後にコルーチンで最初に呼ばれる。
+    // Enemiesの処理が終わった後に、テキストなどを表示する。
+    // 例:30のダメージを与えた
+    public void SelectAction()
     {
-        HP -= damage;
-    }
+        System.Random random = new System.Random();
 
-    public override void TestText()
-    {
-        Debug.Log("スライムです＾＾");
     }
 }

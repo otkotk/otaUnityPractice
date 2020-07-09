@@ -18,14 +18,10 @@ public class PlayerInstance : MonoBehaviour
     }
 
     // 通常攻撃のロジック(暫定) -> (this.atk * 5) / 3 * 1.25
-    public void NomalAttack()
+    public (int, int, int) NomalAttack()
     {
-        // (5*6)/3*1.5 = 14
-        // 14-5 = 9
-        // (15*6)/3*1.5 = 45
-        // 45-15 = 30
-        // (35*6)/3*1.5 = 105
-        // 105-35 = 70
+        (int damage, int weAttr, int maAttr) dSet = player.NomalAttack();
+        return (dSet.damage, dSet.weAttr, dSet.maAttr);
     }
 
     // ジョブをセットする

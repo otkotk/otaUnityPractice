@@ -20,14 +20,4 @@ public class Goblin : Enemies
         WeaponWeakAttribute = 0;
         MagicAttribute = 0;
     }
-
-    public void NomalAttackAccept(int damage)
-    {
-        HP -= damage;
-    }
-
-    public override void TestText()
-    {
-        Debug.Log("スライムです＾＾");
-    }
 }

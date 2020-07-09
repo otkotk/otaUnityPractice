@@ -20,9 +20,4 @@ public class Mouse : Enemies
         WeaponWeakAttribute = 0;
         MagicAttribute = 0;
     }
-
-    public override void TestText()
-    {
-        Debug.Log("スライムです＾＾");
-    }
 }
