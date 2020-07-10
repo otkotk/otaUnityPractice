@@ -8,6 +8,7 @@ public interface IBattleCommand
     (int, int, int) NomalAttack();
 
     // 攻撃を受けるインターフェイス。
+    int NomalAttackAccept(int damage, int weAttr, int maAttr);
 
     // 「まほう」インターフェイス。
     //void MagicAttack();

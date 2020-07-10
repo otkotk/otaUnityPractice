@@ -9,7 +9,7 @@ public class BattleManager : MonoBehaviour
 
     // Enemyの数を決める。
     private int enemyEncounter;
-    private IBattleCommand[] enemies = new IBattleCommand[4];
+    private Enemies[] es = new Enemies[4];
     private int[] enemySelectArr = new int[4];
     private int[] enemyKindArr = new int[4];
 

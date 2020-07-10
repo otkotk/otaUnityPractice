@@ -26,13 +26,13 @@ public class SlimeInstance : MonoBehaviour
                 Debug.Log("こうげき");
                 break;
             case 2:
-                Debug.Log("ぼうぎょ");
-                break;
-            case 3:
                 Debug.Log("まほう");
                 break;
-            case 4:
+            case 3:
                 Debug.Log("アイテムを使う");
+                break;
+            case 4:
+                Debug.Log("にげる");
                 break;
             case 5:
                 Debug.Log("にげる");

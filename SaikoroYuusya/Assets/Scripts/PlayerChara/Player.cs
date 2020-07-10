@@ -157,4 +157,10 @@ public class Player : AbsCharacter, IBattleCommand
 
         return ((int)damage, weAttr, maAttr);
     }
+
+    // 攻撃を受けるインターフェイスを実装
+    int IBattleCommand.NomalAttackAccept(int damage, int weAttr, int maAttr)
+    {
+        throw new NotImplementedException();
+    }
 }
