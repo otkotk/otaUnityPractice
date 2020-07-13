@@ -2,38 +2,39 @@
 using System.Collections;
 using JetBrains.Annotations;
 using System;
+using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
-    public double damage;
-
     // Enemyの数を決める。
     private int enemyEncounter;
     private Enemies[] es = new Enemies[4];
     private int[] enemySelectArr = new int[4];
     private int[] enemyKindArr = new int[4];
+    private GameObject PlayerTag;
+    private GameObject EnemyTag;
+    public GameObject BattleTextPanel;
+    Text BattleTextPanelText;
+    private GameObject enemyObj;
 
 
 
     // Use this for initialization
     void Start()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Input.GetButtonUp("Fire1")) testtesttest();
+        PlayerTag = GameObject.FindWithTag("PlayerTag");
+        EnemyTag = GameObject.FindWithTag("EnemyTag");
+        BattleTextPanelText = BattleTextPanel.GetComponent<Text>();
     }
 
     // 「こうげき」ボタン
     public void NomalAttack()
     {
         GameObject EnemyObject = GameObject.FindWithTag("Selected");
-        GameObject Player = GameObject.FindWithTag("PlayerTag");
 
-        (int damage, int weAttr, int maAttr) dSet = Player.GetComponent<PlayerInstance>().NomalAttack();
+        (int damage, int weAttr, int maAttr) dSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttack();
         Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
+        BattleTextPanelText.text = "スライムに" + dSet.damage + "ダメージ与えた";
 
         //StartCoroutine("EnemyAttackAccept");
     }

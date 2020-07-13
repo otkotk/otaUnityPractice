@@ -2,7 +2,7 @@
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
-public class Player : AbsCharacter, IBattleCommand
+public class Player : AbsCharacter
 {
     // フィールド
     private int job; //職業
@@ -142,25 +142,5 @@ public class Player : AbsCharacter, IBattleCommand
                     break;
             }
         }
-    }
-
-    // 通常攻撃のインターフェイスを実装
-    public (int, int, int) NomalAttack()
-    {
-        // ((5+6)*5)/3*1.25 = 22
-        // 22-5 = 17ダメージ
-        Weapon weapon = new Weapon();
-        weapon.SelectWeapon(BringWeapon);
-        double damage = (ATK + weapon.ATK) * 5 / 3 * 1.25;
-        int weAttr = weapon.WeaponAttribute;
-        int maAttr = weapon.WeaponMagicAttribute;
-
-        return ((int)damage, weAttr, maAttr);
-    }
-
-    // 攻撃を受けるインターフェイスを実装
-    int IBattleCommand.NomalAttackAccept(int damage, int weAttr, int maAttr)
-    {
-        throw new NotImplementedException();
     }
 }
