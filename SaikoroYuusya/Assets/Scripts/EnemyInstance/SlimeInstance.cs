@@ -6,6 +6,7 @@ public class SlimeInstance : MonoBehaviour, IEnemy
 {
     Enemies slime = new Slime();
     private GameObject EnemyTag;
+    private GameObject TagSelected;
 
     void Start()
     {
@@ -36,10 +37,10 @@ public class SlimeInstance : MonoBehaviour, IEnemy
                 Debug.Log("まほう");
                 break;
             case 3:
-                Debug.Log("アイテムを使う");
+                Debug.Log("ぼうぎょ");
                 break;
             case 4:
-                Debug.Log("にげる");
+                Debug.Log("アイテム");
                 break;
             case 5:
                 Debug.Log("にげる");
@@ -50,7 +51,27 @@ public class SlimeInstance : MonoBehaviour, IEnemy
     // タグを切り替えるインターフェイスを実装
     public void SwitchEnemyTag()
     {
+        EnemyTag = GameObject.FindWithTag("Selected");
+        EnemyTag.tag = "EnemyTag";
         Debug.Log(EnemyTag.tag);
         EnemyTag.tag = "Selected";
+        Debug.Log(EnemyTag.tag);
+    }
+
+    public int NomalAttackAccept(int damage, int weAttr, int maAttr)
+    {
+        int EdSet = slime.NomalAttackAccept(damage, weAttr, maAttr);
+        slime.HP -= EdSet;
+        return EdSet;
+    }
+
+    public void ShowStatus()
+    {
+        Debug.Log("スライムさんの残りHP:" + slime.HP);
+    }
+
+    public void isDeath()
+    {
+        if (slime.HP <= 0) Destroy(this.gameObject);
     }
 }

@@ -16,31 +16,62 @@ public class BattleManager : MonoBehaviour
     public GameObject BattleTextPanel;
     Text BattleTextPanelText;
     private GameObject enemyObj;
+    private (int damage, int weAttr, int maAttr) dSet;
+    private int EdSet;
 
 
 
     // Use this for initialization
     void Start()
     {
+        EnemyAppearanceRandom();
+        EnemySelectMethod();
+        EnemyGenerate();
         PlayerTag = GameObject.FindWithTag("PlayerTag");
         EnemyTag = GameObject.FindWithTag("EnemyTag");
+        EnemyTag.tag = "Selected";
         BattleTextPanelText = BattleTextPanel.GetComponent<Text>();
+        StartText();
+    }
+
+    private void StartText()
+    {
+        BattleTextPanelText.text = "敵があらわれた！\nどうするぅ？";
     }
 
     // 「こうげき」ボタン
     public void NomalAttack()
     {
-        GameObject EnemyObject = GameObject.FindWithTag("Selected");
+        if (!GameObject.FindWithTag("Selected"))
+        {
+            EnemyTag = GameObject.FindWithTag("EnemyTag");
+            EnemyTag.tag = "Selected";
+        }
+        EnemyTag = GameObject.FindWithTag("Selected");
 
-        (int damage, int weAttr, int maAttr) dSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttack();
+        BattleTextPanelText.text = "野獣先輩の攻撃ッッッ";
+        dSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttack();
         Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
-        BattleTextPanelText.text = "スライムに" + dSet.damage + "ダメージ与えた";
 
-        //StartCoroutine("EnemyAttackAccept");
+        StartCoroutine("EnemyAttackAccept");
     }
-    //IEnumerator EnemyAttackAccept()
-    //{
-    //}
+    IEnumerator EnemyAttackAccept()
+    {
+        string enemyObjName = EnemyTag.name;
+
+        switch (enemyObjName)
+        {
+            case "Slime(Clone)":
+                EdSet = EnemyTag.GetComponent<SlimeInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+                break;
+        }
+        EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
+        yield return new WaitForSeconds(0.5f);
+        EnemyTag.GetComponent<SlimeInstance>().isDeath();
+        yield return new WaitForSeconds(0.5f);
+        yield return BattleTextPanelText.text = "スライムに" + EdSet + "ダメージ与えた";
+        yield return new WaitUntil(() => Input.GetKeyDown("Fire1"));
+    }
 
     // Enemyの数を決めるメソッド。
     private void EnemyAppearanceRandom()
@@ -71,7 +102,8 @@ public class BattleManager : MonoBehaviour
         System.Random random = new System.Random();
         for(int i=0; i<enemyEncounter; i++)
         {
-            int j = random.Next(0, 4);
+            int j = random.Next(0, 6);
+            j = 0;
             enemyKindArr[i] = j;
         }
     }
@@ -81,7 +113,13 @@ public class BattleManager : MonoBehaviour
     {
         for(int i=0; i<enemyEncounter; i++)
         {
-
+            switch (enemyKindArr[i])
+            {
+                case 0:
+                    enemyObj = (GameObject)Resources.Load("Slime");
+                    Instantiate(enemyObj, new Vector2(-5.0f, 1.4f), Quaternion.identity);
+                    break;
+            }
         }
     }
 }
