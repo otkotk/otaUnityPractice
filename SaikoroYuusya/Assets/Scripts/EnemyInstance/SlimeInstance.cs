@@ -58,16 +58,32 @@ public class SlimeInstance : MonoBehaviour, IEnemy
         Debug.Log(EnemyTag.tag);
     }
 
+    // こうげき
+    // 通常攻撃のロジック(暫定) -> (this.atk * 5) / 3 * 1.25
+    public (int, int, int) NomalAttack()
+    {
+        Weapon w = new Weapon();
+        w.SelectWeapon(slime.BringWeapon);
+        (int damage, int weAttr, int maAttr) dSet = slime.NomalAttack(slime.ATK, w.ATK, w.WeaponAttribute, w.WeaponMagicAttribute);
+
+        return (dSet.damage, dSet.weAttr, dSet.maAttr);
+        //(int damage, int weAttr, int maAttr) dSet = player.NomalAttack();
+        //return (dSet.damage, dSet.weAttr, dSet.maAttr);
+    }
+
+    // ダメージを受けるメソッド
     public int NomalAttackAccept(int damage, int weAttr, int maAttr)
     {
-        int EdSet = slime.NomalAttackAccept(damage, weAttr, maAttr);
+        Armor a = new Armor();
+        a.SelectArmor(slime.BringArmor);
+        int EdSet = slime.NomalAttackAccept(damage, weAttr, maAttr, slime.WeaponWeakAttribute, a.ArmorAttribute, slime.MagicAttribute);
         slime.HP -= EdSet;
         return EdSet;
     }
 
     public void ShowStatus()
     {
-        Debug.Log("スライムさんの残りHP:" + slime.HP);
+        Debug.Log("スライムさんの残りHP:" + slime.HP + " スライムさんの属性:" + slime.MagicAttribute);
     }
 
     public void isDeath()

@@ -8,12 +8,34 @@ public abstract class Enemies : AbsCharacter, IBattleCommand
     // 敵キャラは、
     // Enemies抽象クラスと、
     // IBattleCommandインターフェイスを継承して使う。
-    public (int, int, int) NomalAttack()
+    // 通常攻撃のロジック(暫定) -> (this.atk * 5) / 3 * 1.25
+    public (int, int, int) NomalAttack(int atk, int we_atk, int we_atrr, int ma_attr)
     {
-        throw new System.NotImplementedException();
+        double damage = (atk + we_atk) * 5 / 3 * 1.25;
+        int weAttr = we_atrr;
+        int maAttr = we_atrr;
+
+        return ((int)damage, weAttr, maAttr);
+        //(int damage, int weAttr, int maAttr) dSet = player.NomalAttack();
+        //return (dSet.damage, dSet.weAttr, dSet.maAttr);
     }
 
-    public int NomalAttackAccept(int damage, int weAttr, int maAttr)
+    //// 通常攻撃のロジック(暫定) -> (this.atk * 5) / 3 * 1.25
+    //public (int, int, int) NomalAttack()
+    //{
+    //    Weapon weapon = new Weapon();
+    //    weapon.SelectWeapon(BringWeapon);
+    //    double damage = (ATK + weapon.ATK) * 5 / 3 * 1.25;
+    //    //int weAttr = weapon.WeaponAttribute;
+    //    int weAttr = 3;
+    //    int maAttr = weapon.WeaponMagicAttribute;
+
+    //    return ((int)damage, weAttr, maAttr);
+    //    //(int damage, int weAttr, int maAttr) dSet = player.NomalAttack();
+    //    //return (dSet.damage, dSet.weAttr, dSet.maAttr);
+    //}
+
+    public int NomalAttackAccept(int damage, int weAttr, int maAttr, int we_weak, int arm_attr, int ma_attr)
     {
         // ダメージ計算のため、一旦、別の変数に格納しておく
         double changeDamage = 1.0;
@@ -24,72 +46,72 @@ public abstract class Enemies : AbsCharacter, IBattleCommand
         // 武器属性が0だったら等倍
         if (weAttr != 0)
         {
-            if (WeaponWeakAttribute != ArmorAttribute && WeaponWeakAttribute == weAttr)
+            if (we_weak != arm_attr && we_weak == weAttr)
             {
                 changeDamage *= 1.5;
             }
-            else if (WeaponWeakAttribute == ArmorAttribute && WeaponWeakAttribute == weAttr)
+            else if (we_weak == arm_attr && we_weak == weAttr)
             {
                 changeDamage = 1.0;
             }
-            else if (WeaponWeakAttribute != ArmorAttribute && ArmorAttribute == weAttr)
+            else if (we_weak != arm_attr && arm_attr == weAttr)
             {
                 changeDamage *= 0.75;
             }
         }
 
-        if (MagicAttribute != 0)
+        if (ma_attr != 0)
         {
-            switch (MagicAttribute)
+            switch (ma_attr)
             {
                 case 1:
                     // 魔法属性が弱点を突いていたら
-                    if (maAttr == 2 && maAttr == 4)
+                    if (maAttr == 2 || maAttr == 4)
                     {
                         changeDamage *= 1.5;
                     }
                     // 魔法属性に耐性をもっていたら
-                    else if (maAttr == 3 && maAttr == 5)
+                    else if (maAttr == 3 || maAttr == 5)
                     {
                         changeDamage *= 0.75;
                     }
                     break;
                 case 2:
-                    if (maAttr == 3 && maAttr == 5)
+                    if (maAttr == 3 || maAttr == 5)
                     {
                         changeDamage *= 1.5;
                     }
-                    else if (maAttr == 4 && maAttr == 1)
+                    else if (maAttr == 4 || maAttr == 1)
                     {
                         changeDamage *= 0.75;
                     }
                     break;
                 case 3:
-                    if (maAttr == 4 && maAttr == 1)
+                    if (maAttr == 4 || maAttr == 1)
                     {
                         changeDamage *= 1.5;
                     }
-                    else if (maAttr == 5 && maAttr == 2)
+                    else if (maAttr == 5 || maAttr == 2)
                     {
                         changeDamage *= 0.75;
                     }
                     break;
                 case 4:
-                    if (maAttr == 5 && maAttr == 2)
+                    if (maAttr == 5 || maAttr == 2)
                     {
                         changeDamage *= 1.5;
                     }
-                    else if (maAttr == 1 && maAttr == 3)
+                    else if (maAttr == 1 || maAttr == 3)
                     {
                         changeDamage *= 0.75;
                     }
                     break;
                 case 5:
-                    if (maAttr == 1 && maAttr == 3)
+                    if (maAttr == 1 || maAttr == 3)
                     {
                         changeDamage *= 1.5;
                     }
-                    else if (maAttr == 2 && maAttr == 4)
+                    else if (maAttr == 2 || maAttr == 4)
                     {
                         changeDamage *= 0.75;
                     }

@@ -40,6 +40,8 @@ public class BattleManager : MonoBehaviour
     }
 
     // 「こうげき」ボタン
+    // プレイヤーの攻撃メソッド
+    // 速さ順にする場合、同じメソッドを複製するしかないか...
     public void NomalAttack()
     {
         ButtonInteractable buttonInteractable = new ButtonInteractable();
@@ -66,14 +68,42 @@ public class BattleManager : MonoBehaviour
         {
             case "Slime(Clone)":
                 EdSet = EnemyTag.GetComponent<SlimeInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+                yield return new WaitForSeconds(0.5f);
                 yield return BattleTextPanelText.text = "スライムに" + EdSet + "ダメージ与えた";
                 break;
         }
-        EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
-        yield return new WaitForSeconds(0.5f);
+        // ここにエフェクトを追加する
+        yield return new WaitForSeconds(1.0f);
         EnemyTag.GetComponent<SlimeInstance>().isDeath();
-        yield return new WaitForSeconds(0.5f);
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        //yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        StartCoroutine("PlayerAttackAccept");
+    }
+    IEnumerator PlayerAttackAccept()
+    {
+        yield return BattleTextPanelText.text = "敵が襲いかかる...!";
+        yield return new WaitForSeconds(1.0f);
+        if (GameObject.FindWithTag("Selected"))
+        {
+            EnemyTag = GameObject.FindWithTag("Selected");
+            EnemyTag.tag = "EnemyTag";
+        }
+        GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("EnemyTag");
+        foreach(GameObject eg in enemyObjects)
+        {
+            string enemyObjName = eg.name;
+            switch (enemyObjName)
+            {
+                case "Slime(Clone)":
+                    dSet = eg.GetComponent<SlimeInstance>().NomalAttack();
+                    break;
+            }
+            Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
+            EdSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+            yield return BattleTextPanelText.text = "";
+            yield return BattleTextPanelText.text += "プレイヤーに" + EdSet + "ダメージ与えた\n";
+            yield return new WaitForSeconds(1.0f);
+        }
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonActive();
     }
@@ -87,7 +117,7 @@ public class BattleManager : MonoBehaviour
         {
             enemyEncounter = 4;
         }
-        else if(encounter > 70)
+        else if(encounter > 62)
         {
             enemyEncounter = 3;
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInstance : MonoBehaviour, IBattleCommand
+public class PlayerInstance : MonoBehaviour
 {
     Player player = new Player();
 
@@ -24,11 +24,22 @@ public class PlayerInstance : MonoBehaviour, IBattleCommand
         weapon.SelectWeapon(player.BringWeapon);
         double damage = (player.ATK + weapon.ATK) * 5 / 3 * 1.25;
         int weAttr = weapon.WeaponAttribute;
-        int maAttr = weapon.WeaponMagicAttribute;
+        //int maAttr = weapon.WeaponMagicAttribute;
+        int maAttr = 3;
 
         return ((int)damage, weAttr, maAttr);
         //(int damage, int weAttr, int maAttr) dSet = player.NomalAttack();
         //return (dSet.damage, dSet.weAttr, dSet.maAttr);
+    }
+
+    // ダメージを受けるメソッド
+    public int NomalAttackAccept(int damage, int weAttr, int maAttr)
+    {
+        Armor a = new Armor();
+        a.SelectArmor(player.BringArmor);
+        int EdSet = player.NomalAttackAccept(damage, weAttr, maAttr, player.WeaponWeakAttribute, a.ArmorAttribute, player.MagicAttribute);
+        player.HP -= EdSet;
+        return EdSet;
     }
 
     // ジョブをセットする
@@ -37,8 +48,4 @@ public class PlayerInstance : MonoBehaviour, IBattleCommand
         player.PlayerJob(jobID);
     }
 
-    public int NomalAttackAccept(int damage, int weAttr, int maAttr)
-    {
-        throw new System.NotImplementedException();
-    }
 }
