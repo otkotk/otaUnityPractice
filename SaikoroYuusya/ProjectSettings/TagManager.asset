@@ -9,6 +9,7 @@ TagManager:
   - PlayerTag
   - BattlePanelText
   - EnemyTag
+  - buttons
   layers:
   - Default
   - TransparentFX

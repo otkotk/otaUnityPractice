@@ -42,6 +42,9 @@ public class BattleManager : MonoBehaviour
     // 「こうげき」ボタン
     public void NomalAttack()
     {
+        ButtonInteractable buttonInteractable = new ButtonInteractable();
+        buttonInteractable.ButtonInactive();
+
         if (!GameObject.FindWithTag("Selected"))
         {
             EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -63,14 +66,16 @@ public class BattleManager : MonoBehaviour
         {
             case "Slime(Clone)":
                 EdSet = EnemyTag.GetComponent<SlimeInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+                yield return BattleTextPanelText.text = "スライムに" + EdSet + "ダメージ与えた";
                 break;
         }
         EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
         yield return new WaitForSeconds(0.5f);
         EnemyTag.GetComponent<SlimeInstance>().isDeath();
         yield return new WaitForSeconds(0.5f);
-        yield return BattleTextPanelText.text = "スライムに" + EdSet + "ダメージ与えた";
-        yield return new WaitUntil(() => Input.GetKeyDown("Fire1"));
+        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        ButtonInteractable buttonInteractable = new ButtonInteractable();
+        buttonInteractable.ButtonActive();
     }
 
     // Enemyの数を決めるメソッド。
