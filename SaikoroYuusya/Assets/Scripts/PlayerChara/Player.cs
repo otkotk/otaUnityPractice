@@ -228,6 +228,10 @@ public class Player : AbsCharacter
             }
         }
         int resultDamage = (int)(damage * changeDamage - DEF);
+        if(resultDamage <= 0)
+        {
+            resultDamage = 1;
+        }
         return resultDamage;
     }
 }

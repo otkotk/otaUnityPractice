@@ -42,6 +42,8 @@ public class PlayerInstance : MonoBehaviour
         return EdSet;
     }
 
+    // レベルアップ
+
     // ジョブをセットする
     public void SetPlayerJob(int jobID)
     {

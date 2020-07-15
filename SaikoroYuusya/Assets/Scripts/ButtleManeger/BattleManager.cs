@@ -16,6 +16,7 @@ public class BattleManager : MonoBehaviour
     private GameObject enemyObj;
     private (int damage, int weAttr, int maAttr) dSet;
     private int EdSet;
+    private int bufEXP;
 
 
 
@@ -39,7 +40,7 @@ public class BattleManager : MonoBehaviour
 
     // 「こうげき」ボタン
     // プレイヤーの攻撃メソッド
-    // 速さ順にする場合、同じメソッドを複製するしかないか...
+    // AGIの実装は一旦、保留する＾＾;
     public void NomalAttack()
     {
         ButtonInteractable buttonInteractable = new ButtonInteractable();
@@ -73,8 +74,14 @@ public class BattleManager : MonoBehaviour
         }
         // ここにエフェクトを追加する
         yield return new WaitForSeconds(1.0f);
-        EnemyTag.GetComponent<SlimeInstance>().isDeath();
+        bufEXP += EnemyTag.GetComponent<SlimeInstance>().isDeath();
         //yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+
+        if(GameObject.FindWithTag("EnemyTag") == null)
+        {
+            yield return new WaitForSeconds(2.0f);
+            Debug.Log("合計経験値:" + bufEXP);
+        }
 
         StartCoroutine("PlayerAttackAccept");
     }
@@ -99,7 +106,6 @@ public class BattleManager : MonoBehaviour
             }
             Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
             EdSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
-            yield return BattleTextPanelText.text = "";
             yield return BattleTextPanelText.text += "プレイヤーに" + EdSet + "ダメージ与えた\n";
             yield return new WaitForSeconds(0.5f);
         }

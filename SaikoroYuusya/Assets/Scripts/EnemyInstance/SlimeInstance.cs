@@ -6,7 +6,7 @@ public class SlimeInstance : MonoBehaviour, IEnemy
 {
     Enemies slime = new Slime();
     private GameObject EnemyTag;
-    private GameObject TagSelected;
+    public GameObject thisEnemyTag;
 
     void Start()
     {
@@ -53,6 +53,7 @@ public class SlimeInstance : MonoBehaviour, IEnemy
     {
         EnemyTag = GameObject.FindWithTag("Selected");
         EnemyTag.tag = "EnemyTag";
+        this.tag = "Selected";
     }
 
     // こうげき
@@ -83,8 +84,14 @@ public class SlimeInstance : MonoBehaviour, IEnemy
         Debug.Log("スライムさんの残りHP:" + slime.HP + " スライムさんの属性:" + slime.MagicAttribute);
     }
 
-    public void isDeath()
+    public int isDeath()
     {
-        if (slime.HP <= 0) Destroy(this.gameObject);
+        int bufEXP = 0;
+        if (slime.HP <= 0)
+        {
+            bufEXP += slime.EXP;
+            Destroy(this.gameObject);
+        }
+        return bufEXP;
     }
 }
