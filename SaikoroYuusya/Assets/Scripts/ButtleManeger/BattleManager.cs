@@ -8,8 +8,6 @@ public class BattleManager : MonoBehaviour
 {
     // Enemyの数を決める。
     private int enemyEncounter;
-    private Enemies[] es = new Enemies[4];
-    private int[] enemySelectArr = new int[4];
     private int[] enemyKindArr = new int[4];
     private GameObject PlayerTag;
     private GameObject EnemyTag;
@@ -62,6 +60,7 @@ public class BattleManager : MonoBehaviour
     }
     IEnumerator EnemyAttackAccept()
     {
+        yield return new WaitForSeconds(0.5f);
         string enemyObjName = EnemyTag.name;
 
         switch (enemyObjName)
@@ -102,7 +101,7 @@ public class BattleManager : MonoBehaviour
             EdSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
             yield return BattleTextPanelText.text = "";
             yield return BattleTextPanelText.text += "プレイヤーに" + EdSet + "ダメージ与えた\n";
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.5f);
         }
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonActive();
@@ -146,13 +145,41 @@ public class BattleManager : MonoBehaviour
     // 敵の数だけプレファブを生成する
     private void EnemyGenerate()
     {
+        float[] yee = new float[4];
+        if(enemyEncounter == 1)
+        {
+            yee[0] = 1.25f;
+        }
+        else if(enemyEncounter == 2)
+        {
+            yee[0] = 0f;
+            yee[1] = 2.5f;
+        }
+        else if(enemyEncounter == 3)
+        {
+            yee[0] = -1.25f;
+            yee[1] = 1.25f;
+            yee[2] = 3.75f;
+        }
+        else
+        {
+            yee[0] = -2.5f;
+            yee[1] = 0f;
+            yee[2] = 2.5f;
+            yee[3] = 5.0f;
+        }
+
         for(int i=0; i<enemyEncounter; i++)
         {
             switch (enemyKindArr[i])
             {
                 case 0:
                     enemyObj = (GameObject)Resources.Load("Slime");
-                    Instantiate(enemyObj, new Vector2(-5.0f, 1.4f), Quaternion.identity);
+                    // 1匹:1.25
+                    // 2匹:0, 2.5
+                    // 3匹:-1.25, 1.25, 3.75
+                    // 4匹:-2.5, 0, 2.5, 5
+                    Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
                     break;
             }
         }

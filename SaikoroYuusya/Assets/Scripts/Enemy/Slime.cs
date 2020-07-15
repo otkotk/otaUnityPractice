@@ -15,7 +15,7 @@ public class Slime : Enemies
         Mental = 0;
         AGI = 1;
         EXP = 3;
-        BringWeapon = "w101";
+        BringWeapon = null;
         BringArmor = null;
         Weapon weapon = new Weapon();
         weapon.SelectWeapon(BringWeapon);

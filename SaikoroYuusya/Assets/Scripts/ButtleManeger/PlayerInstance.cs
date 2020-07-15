@@ -24,8 +24,8 @@ public class PlayerInstance : MonoBehaviour
         weapon.SelectWeapon(player.BringWeapon);
         double damage = (player.ATK + weapon.ATK) * 5 / 3 * 1.25;
         int weAttr = weapon.WeaponAttribute;
-        //int maAttr = weapon.WeaponMagicAttribute;
-        int maAttr = 3;
+        int maAttr = weapon.WeaponMagicAttribute;
+        //int maAttr = 3;
 
         return ((int)damage, weAttr, maAttr);
         //(int damage, int weAttr, int maAttr) dSet = player.NomalAttack();

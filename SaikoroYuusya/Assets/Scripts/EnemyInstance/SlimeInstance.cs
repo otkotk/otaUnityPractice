@@ -53,9 +53,6 @@ public class SlimeInstance : MonoBehaviour, IEnemy
     {
         EnemyTag = GameObject.FindWithTag("Selected");
         EnemyTag.tag = "EnemyTag";
-        Debug.Log(EnemyTag.tag);
-        EnemyTag.tag = "Selected";
-        Debug.Log(EnemyTag.tag);
     }
 
     // こうげき

@@ -5,21 +5,21 @@ using System;
 
 public class Weapon
 {
-    private string name;
+    private string name = "名無しさん";
     public string Name { get { return this.name; } }
 
-    private int atk;
+    private int atk = 0;
     public int ATK { get { return this.atk; } }
 
-    private int mental;
+    private int mental = 0;
     public int Mental { get { return this.mental; } }
 
     // weaponAttribute 0:無 1:斬撃 2:打撃 3:刺突 4:投擲
-    private int weaponAttribute;
+    private int weaponAttribute = 0;
     public int WeaponAttribute { get { return this.weaponAttribute; } }
 
     // magicAttribute 0:無 1:火 2:水 3:電気 4:土 5:氷 6:光 7:闇
-    private int weaponMagicAttribute;
+    private int weaponMagicAttribute = 0;
     public int WeaponMagicAttribute { get { return this.weaponMagicAttribute; } }
 
     // タプル型の変数^o^;
