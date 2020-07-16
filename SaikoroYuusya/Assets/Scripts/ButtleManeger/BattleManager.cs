@@ -16,7 +16,9 @@ public class BattleManager : MonoBehaviour
     private GameObject enemyObj;
     private (int damage, int weAttr, int maAttr) dSet;
     private int EdSet;
-    private int bufEXP;
+    private bool dead;
+    private int bufEXP = 0;
+    private GameObject cursor;
 
 
 
@@ -29,6 +31,7 @@ public class BattleManager : MonoBehaviour
         PlayerTag = GameObject.FindWithTag("PlayerTag");
         EnemyTag = GameObject.FindWithTag("EnemyTag");
         EnemyTag.tag = "Selected";
+        EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
         BattleTextPanelText = BattleTextPanel.GetComponent<Text>();
         StartText();
     }
@@ -41,17 +44,18 @@ public class BattleManager : MonoBehaviour
     // 「こうげき」ボタン
     // プレイヤーの攻撃メソッド
     // AGIの実装は一旦、保留する＾＾;
+    // 全体攻撃は、別で作る
     public void NomalAttack()
     {
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonInactive();
 
-        if (!GameObject.FindWithTag("Selected"))
-        {
-            EnemyTag = GameObject.FindWithTag("EnemyTag");
-            EnemyTag.tag = "Selected";
-        }
-        EnemyTag = GameObject.FindWithTag("Selected");
+        //if (!GameObject.FindWithTag("Selected"))
+        //{
+        //    EnemyTag = GameObject.FindWithTag("EnemyTag");
+        //    EnemyTag.tag = "Selected";
+        //}
+        //EnemyTag = GameObject.FindWithTag("Selected");
 
         BattleTextPanelText.text = "野獣先輩の攻撃ッッッ";
         dSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttack();
@@ -70,17 +74,27 @@ public class BattleManager : MonoBehaviour
                 EdSet = EnemyTag.GetComponent<SlimeInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
                 yield return new WaitForSeconds(0.5f);
                 yield return BattleTextPanelText.text = "スライムに" + EdSet + "ダメージ与えた";
+                yield return new WaitForSeconds(1.5f);
+                EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
+                dead = EnemyTag.GetComponent<SlimeInstance>().isDeath();
+                if(dead == true)
+                {
+                    yield return BattleTextPanelText.text = "スライムは無残にも崩れ落ちた";
+                    bufEXP += EnemyTag.GetComponent<SlimeInstance>().GetEXP();
+                    enemyEncounter--;
+                }
                 break;
         }
         // ここにエフェクトを追加する
-        yield return new WaitForSeconds(1.0f);
-        bufEXP += EnemyTag.GetComponent<SlimeInstance>().isDeath();
+        yield return new WaitForSeconds(1.5f);
         //yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
 
-        if(GameObject.FindWithTag("EnemyTag") == null)
+        if(enemyEncounter == 0)
         {
             yield return new WaitForSeconds(2.0f);
-            Debug.Log("合計経験値:" + bufEXP);
+            yield return BattleTextPanelText.text = "経験値 : " + bufEXP;
+            yield return BattleTextPanelText.text += "\n戦いに勝利した＾＾";
+            yield break;
         }
 
         StartCoroutine("PlayerAttackAccept");
@@ -89,6 +103,7 @@ public class BattleManager : MonoBehaviour
     {
         yield return BattleTextPanelText.text = "敵が襲いかかる...!";
         yield return new WaitForSeconds(1.0f);
+        yield return BattleTextPanelText.text = "";
         if (GameObject.FindWithTag("Selected"))
         {
             EnemyTag = GameObject.FindWithTag("Selected");
@@ -109,6 +124,8 @@ public class BattleManager : MonoBehaviour
             yield return BattleTextPanelText.text += "プレイヤーに" + EdSet + "ダメージ与えた\n";
             yield return new WaitForSeconds(0.5f);
         }
+        // アクティブなcursorを探して、その親要素のタグを"Selected"に変更する
+        cursor = GameObject.FindWithTag("EnemyCursor");
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonActive();
     }

@@ -52,6 +52,9 @@ public class SlimeInstance : MonoBehaviour, IEnemy
     public void SwitchEnemyTag()
     {
         EnemyTag = GameObject.FindWithTag("Selected");
+        GameObject cursor = GameObject.FindWithTag("EnemyCursor");
+        cursor.SetActive(false);
+        this.GetComponent<EnemyCursor>().ObjectIsActive();
         EnemyTag.tag = "EnemyTag";
         this.tag = "Selected";
     }
@@ -84,14 +87,22 @@ public class SlimeInstance : MonoBehaviour, IEnemy
         Debug.Log("スライムさんの残りHP:" + slime.HP + " スライムさんの属性:" + slime.MagicAttribute);
     }
 
-    public int isDeath()
+    // 倒したか確認する
+    public bool isDeath()
     {
-        int bufEXP = 0;
+        bool dead = false;
         if (slime.HP <= 0)
         {
-            bufEXP += slime.EXP;
-            Destroy(this.gameObject);
+            dead = true;
+            //Destroy(this.gameObject);
         }
-        return bufEXP;
+        return dead;
+    }
+
+    // 倒していたら、Hierarchyからオブジェクトを削除する
+    public int GetEXP()
+    {
+        Destroy(this.gameObject);
+        return slime.EXP;
     }
 }
