@@ -29,7 +29,7 @@ public class Player : AbsCharacter
         HP = 100;
         MP = 15;
         ATK = 5;
-        DEF = 5;
+        DEF = 1;
         Mental = 3;
         AGI = 3;
         EXP = 0;

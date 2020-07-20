@@ -22,11 +22,15 @@ public class BattleManager : MonoBehaviour
     private GameObject cursor;
     public GameObject camera;
 
+    // 強敵
+    private bool toughBool = false;
+
 
 
     // Use this for initialization
     void Start()
     {
+        ToughEnemy();
         EnemyAppearanceRandom();
         EnemySelectMethod();
         EnemyGenerate();
@@ -100,7 +104,6 @@ public class BattleManager : MonoBehaviour
                 yield return new WaitForSeconds(1.0f);
                 yield return BattleTextPanelText.text = "キューブスライムに" + EdSet + "ダメージ与えた";
                 yield return new WaitForSeconds(1.0f);
-                //EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
                 dead = EnemyTag.GetComponent<CubeSlimeInstance>().isDeath();
                 if (dead == true)
                 {
@@ -119,9 +122,8 @@ public class BattleManager : MonoBehaviour
             case "MeltSlime(Clone)":
                 EdSet = EnemyTag.GetComponent<MeltSlimeInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
                 yield return new WaitForSeconds(1.0f);
-                yield return BattleTextPanelText.text = "キューブスライムに" + EdSet + "ダメージ与えた";
+                yield return BattleTextPanelText.text = "とろけるスライムに" + EdSet + "ダメージ与えた";
                 yield return new WaitForSeconds(1.0f);
-                //EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
                 dead = EnemyTag.GetComponent<MeltSlimeInstance>().isDeath();
                 if (dead == true)
                 {
@@ -129,6 +131,86 @@ public class BattleManager : MonoBehaviour
                     yield return BattleTextPanelText.text = "とろけるスライムは無残にも崩れ落ちた";
                     yield return new WaitForSeconds(0.5f);
                     bufEXP += EnemyTag.GetComponent<MeltSlimeInstance>().GetEXP();
+                    if (enemyEncounter != 0)
+                    {
+                        EnemyTag = GameObject.FindWithTag("EnemyTag");
+                        EnemyTag.tag = "Selected";
+                        EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
+                    }
+                }
+                break;
+            case "MiniPlant(Clone)":
+                EdSet = EnemyTag.GetComponent<MiniPlantInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+                yield return new WaitForSeconds(1.0f);
+                yield return BattleTextPanelText.text = "ミニプラントに" + EdSet + "ダメージ与えた";
+                yield return new WaitForSeconds(1.0f);
+                dead = EnemyTag.GetComponent<MiniPlantInstance>().isDeath();
+                if (dead == true)
+                {
+                    enemyEncounter--;
+                    yield return BattleTextPanelText.text = "ミニプラントは無残にも崩れ落ちた";
+                    yield return new WaitForSeconds(0.5f);
+                    bufEXP += EnemyTag.GetComponent<MiniPlantInstance>().GetEXP();
+                    if (enemyEncounter != 0)
+                    {
+                        EnemyTag = GameObject.FindWithTag("EnemyTag");
+                        EnemyTag.tag = "Selected";
+                        EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
+                    }
+                }
+                break;
+            case "Mouse(Clone)":
+                EdSet = EnemyTag.GetComponent<MouseInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+                yield return new WaitForSeconds(1.0f);
+                yield return BattleTextPanelText.text = "ヌットリアに" + EdSet + "ダメージ与えた";
+                yield return new WaitForSeconds(1.0f);
+                dead = EnemyTag.GetComponent<MouseInstance>().isDeath();
+                if (dead == true)
+                {
+                    enemyEncounter--;
+                    yield return BattleTextPanelText.text = "ヌットリアは無残にも崩れ落ちた";
+                    yield return new WaitForSeconds(0.5f);
+                    bufEXP += EnemyTag.GetComponent<MouseInstance>().GetEXP();
+                    if (enemyEncounter != 0)
+                    {
+                        EnemyTag = GameObject.FindWithTag("EnemyTag");
+                        EnemyTag.tag = "Selected";
+                        EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
+                    }
+                }
+                break;
+            case "Rabbit(Clone)":
+                EdSet = EnemyTag.GetComponent<RabbitInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+                yield return new WaitForSeconds(1.0f);
+                yield return BattleTextPanelText.text = "野うさぎに" + EdSet + "ダメージ与えた";
+                yield return new WaitForSeconds(1.0f);
+                dead = EnemyTag.GetComponent<RabbitInstance>().isDeath();
+                if (dead == true)
+                {
+                    enemyEncounter--;
+                    yield return BattleTextPanelText.text = "野うさぎは無残にも崩れ落ちた";
+                    yield return new WaitForSeconds(0.5f);
+                    bufEXP += EnemyTag.GetComponent<RabbitInstance>().GetEXP();
+                    if (enemyEncounter != 0)
+                    {
+                        EnemyTag = GameObject.FindWithTag("EnemyTag");
+                        EnemyTag.tag = "Selected";
+                        EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
+                    }
+                }
+                break;
+            case "Thief(Clone)":
+                EdSet = EnemyTag.GetComponent<ThiefInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+                yield return new WaitForSeconds(1.0f);
+                yield return BattleTextPanelText.text = "盗賊に" + EdSet + "ダメージ与えた";
+                yield return new WaitForSeconds(1.0f);
+                dead = EnemyTag.GetComponent<ThiefInstance>().isDeath();
+                if (dead == true)
+                {
+                    enemyEncounter--;
+                    yield return BattleTextPanelText.text = "盗賊は無残にも崩れ落ちた";
+                    yield return new WaitForSeconds(0.5f);
+                    bufEXP += EnemyTag.GetComponent<ThiefInstance>().GetEXP();
                     if (enemyEncounter != 0)
                     {
                         EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -147,6 +229,10 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             yield return BattleTextPanelText.text = "経験値 : " + bufEXP;
             yield return BattleTextPanelText.text += "\n戦いに勝利した＾＾";
+            if (toughBool == true)
+            {
+                toughBool = false;
+            }
             yield break;
         }
 
@@ -180,6 +266,22 @@ public class BattleManager : MonoBehaviour
                     dSet = eg.GetComponent<MeltSlimeInstance>().NomalAttack();
                     BattleTextPanelText.text += "とろけるスライムは、";
                     break;
+                case "MiniPlant(Clone)":
+                    dSet = eg.GetComponent<MiniPlantInstance>().NomalAttack();
+                    BattleTextPanelText.text += "ミニプラントは、";
+                    break;
+                case "Mouse(Clone)":
+                    dSet = eg.GetComponent<MouseInstance>().NomalAttack();
+                    BattleTextPanelText.text += "ヌットリアは、";
+                    break;
+                case "Rabbit(Clone)":
+                    dSet = eg.GetComponent<RabbitInstance>().NomalAttack();
+                    BattleTextPanelText.text += "野うさぎは、";
+                    break;
+                case "Thief(Clone)":
+                    dSet = eg.GetComponent<ThiefInstance>().NomalAttack();
+                    BattleTextPanelText.text += "盗賊は、";
+                    break;
             }
             Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
             EdSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
@@ -199,7 +301,15 @@ public class BattleManager : MonoBehaviour
     {
         System.Random random = new System.Random();
         int encounter = random.Next(0, 100);
-        encounter = 100;
+        //encounter = 100;
+
+        // 強敵マスに止まっていたら、敵を3体に固定する(Level2では趣向を変える)
+        if(toughBool == true)
+        {
+            encounter = 64;
+        }
+
+        // 通常の敵マス
         if (encounter % 2 == 0 && encounter >= 84)
         {
             enemyEncounter = 4;
@@ -224,7 +334,7 @@ public class BattleManager : MonoBehaviour
         System.Random random = new System.Random();
         for(int i=0; i<enemyEncounter; i++)
         {
-            int j = random.Next(0, 3);
+            int j = random.Next(0, 6);
             enemyKindArr[i] = j;
         }
     }
@@ -232,59 +342,77 @@ public class BattleManager : MonoBehaviour
     // 敵の数だけプレファブを生成する
     private void EnemyGenerate()
     {
+        // 1匹:1.25
+        // 2匹:0, 2.5
+        // 3匹:-1.25, 1.25, 3.75
+        // 4匹:-2.5, 0, 2.5, 5
         float[] yee = new float[4];
-        if(enemyEncounter == 1)
+        switch (enemyEncounter)
         {
-            yee[0] = 1.25f;
-        }
-        else if(enemyEncounter == 2)
-        {
-            yee[0] = 0f;
-            yee[1] = 2.5f;
-        }
-        else if(enemyEncounter == 3)
-        {
-            yee[0] = -1.25f;
-            yee[1] = 1.25f;
-            yee[2] = 3.75f;
-        }
-        else
-        {
-            yee[0] = -2.5f;
-            yee[1] = 0f;
-            yee[2] = 2.5f;
-            yee[3] = 5.0f;
+            case 1:
+                yee[0] = 1.25f;
+                break;
+            case 2:
+                yee[0] = 0f;
+                yee[1] = 2.5f;
+                break;
+            case 3:
+                yee[0] = -1.25f;
+                yee[1] = 1.25f;
+                yee[2] = 3.75f;
+                break;
+            case 4:
+                yee[0] = -2.5f;
+                yee[1] = 0f;
+                yee[2] = 2.5f;
+                yee[3] = 5.0f;
+                break;
         }
 
         for(int i=0; i<enemyEncounter; i++)
         {
+            if(toughBool == true)
+            {
+                enemyKindArr[1] = 6;
+            }
+            Debug.Log(enemyEncounter);
             switch (enemyKindArr[i])
             {
                 case 0:
                     enemyObj = (GameObject)Resources.Load("Slime");
-                    // 1匹:1.25
-                    // 2匹:0, 2.5
-                    // 3匹:-1.25, 1.25, 3.75
-                    // 4匹:-2.5, 0, 2.5, 5
                     Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
                     break;
                 case 1:
                     enemyObj = (GameObject)Resources.Load("CubeSlime");
-                    // 1匹:1.25
-                    // 2匹:0, 2.5
-                    // 3匹:-1.25, 1.25, 3.75
-                    // 4匹:-2.5, 0, 2.5, 5
                     Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
                     break;
                 case 2:
                     enemyObj = (GameObject)Resources.Load("MeltSlime");
-                    // 1匹:1.25
-                    // 2匹:0, 2.5
-                    // 3匹:-1.25, 1.25, 3.75
-                    // 4匹:-2.5, 0, 2.5, 5
+                    Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
+                    break;
+                case 3:
+                    enemyObj = (GameObject)Resources.Load("MiniPlant");
+                    Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
+                    break;
+                case 4:
+                    enemyObj = (GameObject)Resources.Load("Mouse");
+                    Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
+                    break;
+                case 5:
+                    enemyObj = (GameObject)Resources.Load("Rabbit");
+                    Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
+                    break;
+                case 6:
+                    enemyObj = (GameObject)Resources.Load("Thief");
                     Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
                     break;
             }
         }
+    }
+
+    // 強敵マスに止まった場合、この関数を動かす
+    public void ToughEnemy()
+    {
+        toughBool = true;
     }
 }

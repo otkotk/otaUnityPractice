@@ -36,18 +36,22 @@ public class Weapon
             switch (weaponID)
             {
                 case "w100":
+                    name = "小さなナイフ";
+                    atk = 2;
+                    break;
+                case "w101":
                     name = "ヒノキの木刀";
                     atk = 6;
                     break;
-                case "w101":
+                case "w102":
                     name = "ナイフ";
                     atk = 9;
                     break;
-                case "w102":
+                case "w103":
                     name = "長ナイフ";
                     atk = 12;
                     break;
-                case "w103":
+                case "w104":
                     name = "メタルソード";
                     atk = 12;
                     break;
