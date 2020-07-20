@@ -65,23 +65,31 @@ public class BattleManager : MonoBehaviour
     }
     IEnumerator EnemyAttackAccept()
     {
+        EnemyTag = GameObject.FindWithTag("Selected");
         yield return new WaitForSeconds(0.5f);
         string enemyObjName = EnemyTag.name;
+        Debug.Log(EnemyTag.tag);
 
         switch (enemyObjName)
         {
             case "Slime(Clone)":
                 EdSet = EnemyTag.GetComponent<SlimeInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(1.0f);
                 yield return BattleTextPanelText.text = "スライムに" + EdSet + "ダメージ与えた";
-                yield return new WaitForSeconds(1.5f);
-                EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
+                yield return new WaitForSeconds(1.0f);
+                //EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
                 dead = EnemyTag.GetComponent<SlimeInstance>().isDeath();
                 if(dead == true)
                 {
+                    enemyEncounter--;
                     yield return BattleTextPanelText.text = "スライムは無残にも崩れ落ちた";
                     bufEXP += EnemyTag.GetComponent<SlimeInstance>().GetEXP();
-                    enemyEncounter--;
+                    if(enemyEncounter != 0)
+                    {
+                    EnemyTag = GameObject.FindWithTag("EnemyTag");
+                    EnemyTag.tag = "Selected";
+                    EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
+                    }
                 }
                 break;
         }
@@ -91,7 +99,7 @@ public class BattleManager : MonoBehaviour
 
         if(enemyEncounter == 0)
         {
-            yield return new WaitForSeconds(2.0f);
+            yield return new WaitForSeconds(1.0f);
             yield return BattleTextPanelText.text = "経験値 : " + bufEXP;
             yield return BattleTextPanelText.text += "\n戦いに勝利した＾＾";
             yield break;
@@ -117,15 +125,17 @@ public class BattleManager : MonoBehaviour
             {
                 case "Slime(Clone)":
                     dSet = eg.GetComponent<SlimeInstance>().NomalAttack();
+                    eg.GetComponent<SlimeInstance>().ShowStatus();
                     break;
             }
             Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
             EdSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
             yield return BattleTextPanelText.text += "プレイヤーに" + EdSet + "ダメージ与えた\n";
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
         }
         // アクティブなcursorを探して、その親要素のタグを"Selected"に変更する
         cursor = GameObject.FindWithTag("EnemyCursor");
+        cursor.GetComponent<Cursor2TagSwitch>().EnemySwitchTag4Cursor();
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonActive();
     }
@@ -135,6 +145,7 @@ public class BattleManager : MonoBehaviour
     {
         System.Random random = new System.Random();
         int encounter = random.Next(0, 100);
+        encounter = 100;
         if(encounter % 2 == 0 && encounter >= 84)
         {
             enemyEncounter = 4;
