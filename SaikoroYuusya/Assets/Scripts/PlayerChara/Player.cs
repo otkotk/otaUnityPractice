@@ -20,9 +20,9 @@ public class Player : AbsCharacter
     {
         Weapon www = new Weapon();
         Armor aaa = new Armor();
-        BringWeapon = null;
+        BringWeapon = "w199";
         www.SelectWeapon(BringWeapon);
-        BringArmor = "a200";
+        BringArmor = null;
         aaa.SelectArmor(BringArmor);
 
         Name = "名無しさん";

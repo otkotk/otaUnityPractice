@@ -3,6 +3,7 @@ using System.Collections;
 using JetBrains.Annotations;
 using System;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class BattleManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class BattleManager : MonoBehaviour
     private bool dead;
     private int bufEXP = 0;
     private GameObject cursor;
+    public GameObject camera;
 
 
 
@@ -47,6 +49,7 @@ public class BattleManager : MonoBehaviour
     // 全体攻撃は、別で作る
     public void NomalAttack()
     {
+        Destroy(camera.GetComponent<Physics2DRaycaster>());
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonInactive();
 
@@ -92,6 +95,48 @@ public class BattleManager : MonoBehaviour
                     }
                 }
                 break;
+            case "CubeSlime(Clone)":
+                EdSet = EnemyTag.GetComponent<CubeSlimeInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+                yield return new WaitForSeconds(1.0f);
+                yield return BattleTextPanelText.text = "キューブスライムに" + EdSet + "ダメージ与えた";
+                yield return new WaitForSeconds(1.0f);
+                //EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
+                dead = EnemyTag.GetComponent<CubeSlimeInstance>().isDeath();
+                if (dead == true)
+                {
+                    enemyEncounter--;
+                    yield return BattleTextPanelText.text = "キューブスライムは無残にも崩れ落ちた";
+                    yield return new WaitForSeconds(0.5f);
+                    bufEXP += EnemyTag.GetComponent<CubeSlimeInstance>().GetEXP();
+                    if (enemyEncounter != 0)
+                    {
+                        EnemyTag = GameObject.FindWithTag("EnemyTag");
+                        EnemyTag.tag = "Selected";
+                        EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
+                    }
+                }
+                break;
+            case "MeltSlime(Clone)":
+                EdSet = EnemyTag.GetComponent<MeltSlimeInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
+                yield return new WaitForSeconds(1.0f);
+                yield return BattleTextPanelText.text = "キューブスライムに" + EdSet + "ダメージ与えた";
+                yield return new WaitForSeconds(1.0f);
+                //EnemyTag.GetComponent<SlimeInstance>().ShowStatus();
+                dead = EnemyTag.GetComponent<MeltSlimeInstance>().isDeath();
+                if (dead == true)
+                {
+                    enemyEncounter--;
+                    yield return BattleTextPanelText.text = "とろけるスライムは無残にも崩れ落ちた";
+                    yield return new WaitForSeconds(0.5f);
+                    bufEXP += EnemyTag.GetComponent<MeltSlimeInstance>().GetEXP();
+                    if (enemyEncounter != 0)
+                    {
+                        EnemyTag = GameObject.FindWithTag("EnemyTag");
+                        EnemyTag.tag = "Selected";
+                        EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
+                    }
+                }
+                break;
         }
         // ここにエフェクトを追加する
         yield return new WaitForSeconds(1.5f);
@@ -125,7 +170,15 @@ public class BattleManager : MonoBehaviour
             {
                 case "Slime(Clone)":
                     dSet = eg.GetComponent<SlimeInstance>().NomalAttack();
-                    eg.GetComponent<SlimeInstance>().ShowStatus();
+                    BattleTextPanelText.text += "スライムは、";
+                    break;
+                case "CubeSlime(Clone)":
+                    dSet = eg.GetComponent<CubeSlimeInstance>().NomalAttack();
+                    BattleTextPanelText.text += "キューブスライムは、";
+                    break;
+                case "MeltSlime(Clone)":
+                    dSet = eg.GetComponent<MeltSlimeInstance>().NomalAttack();
+                    BattleTextPanelText.text += "とろけるスライムは、";
                     break;
             }
             Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
@@ -136,6 +189,7 @@ public class BattleManager : MonoBehaviour
         // アクティブなcursorを探して、その親要素のタグを"Selected"に変更する
         cursor = GameObject.FindWithTag("EnemyCursor");
         cursor.GetComponent<Cursor2TagSwitch>().EnemySwitchTag4Cursor();
+        camera.AddComponent<Physics2DRaycaster>();
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonActive();
     }
@@ -146,7 +200,7 @@ public class BattleManager : MonoBehaviour
         System.Random random = new System.Random();
         int encounter = random.Next(0, 100);
         encounter = 100;
-        if(encounter % 2 == 0 && encounter >= 84)
+        if (encounter % 2 == 0 && encounter >= 84)
         {
             enemyEncounter = 4;
         }
@@ -170,8 +224,7 @@ public class BattleManager : MonoBehaviour
         System.Random random = new System.Random();
         for(int i=0; i<enemyEncounter; i++)
         {
-            int j = random.Next(0, 6);
-            j = 0;
+            int j = random.Next(0, 3);
             enemyKindArr[i] = j;
         }
     }
@@ -209,6 +262,22 @@ public class BattleManager : MonoBehaviour
             {
                 case 0:
                     enemyObj = (GameObject)Resources.Load("Slime");
+                    // 1匹:1.25
+                    // 2匹:0, 2.5
+                    // 3匹:-1.25, 1.25, 3.75
+                    // 4匹:-2.5, 0, 2.5, 5
+                    Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
+                    break;
+                case 1:
+                    enemyObj = (GameObject)Resources.Load("CubeSlime");
+                    // 1匹:1.25
+                    // 2匹:0, 2.5
+                    // 3匹:-1.25, 1.25, 3.75
+                    // 4匹:-2.5, 0, 2.5, 5
+                    Instantiate(enemyObj, new Vector2(yee[i], 1.4f), Quaternion.identity);
+                    break;
+                case 2:
+                    enemyObj = (GameObject)Resources.Load("MeltSlime");
                     // 1匹:1.25
                     // 2匹:0, 2.5
                     // 3匹:-1.25, 1.25, 3.75
