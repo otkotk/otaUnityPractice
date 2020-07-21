@@ -11,6 +11,7 @@ TagManager:
   - EnemyTag
   - buttons
   - EnemyCursor
+  - Saikoros
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class BattleManager : MonoBehaviour
 {
@@ -34,11 +35,16 @@ public class BattleManager : MonoBehaviour
     // 強敵
     private bool toughBool = false;
 
+    // サイコロで決める
+    private int[] saikoro_1 = new int[] { 1, 1, 1, 1, 1, 2, 2, 3 };
+    private int[] saikoro_2;
+
 
 
     // Use this for initialization
     void Start()
     {
+        ShuffleSaikoro();
         //ToughEnemy();
         EnemyAppearanceRandom();
         EnemySelectMethod();
@@ -49,6 +55,7 @@ public class BattleManager : MonoBehaviour
         EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
         BattleTextPanelText = BattleTextPanel.GetComponent<Text>();
         StartText();
+        //ShowSaikoro();
     }
 
     private void StartText()
@@ -392,7 +399,7 @@ public class BattleManager : MonoBehaviour
             {
                 enemyKindArr[1] = 6;
             }
-            Debug.Log(enemyEncounter);
+
             switch (enemyKindArr[i])
             {
                 case 0:
@@ -433,6 +440,19 @@ public class BattleManager : MonoBehaviour
         toughBool = true;
     }
 
-    // サイコロ
+    // サイコロの中身をシャッフルする
+    public void ShuffleSaikoro()
+    {
+        saikoro_2 = saikoro_1.OrderBy(i => Guid.NewGuid()).ToArray();
+    }
+
+    // サイコロがシャッフルされているか確認する
+    public void ShowSaikoro()
+    {
+        foreach(int i in saikoro_2)
+        {
+            BattleTextPanelText.text += i;
+        }
+    }
 
 }
