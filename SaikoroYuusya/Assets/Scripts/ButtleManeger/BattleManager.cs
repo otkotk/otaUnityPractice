@@ -9,16 +9,25 @@ public class BattleManager : MonoBehaviour
 {
     // Enemyの数を決める。
     private int enemyEncounter;
+
+    // Enemyの種類を格納する
     private int[] enemyKindArr = new int[4];
+
     private GameObject PlayerTag;
     private GameObject EnemyTag;
     public GameObject BattleTextPanel;
     Text BattleTextPanelText;
     private GameObject enemyObj;
+
+    // ダメージを与える変数
     private (int damage, int weAttr, int maAttr) dSet;
+
+    // ダメージを受ける変数
     private int EdSet;
     private bool dead;
     private int bufEXP = 0;
+
+    // Enemyの下に付いているカーソル
     private GameObject cursor;
     public GameObject camera;
 
@@ -30,7 +39,7 @@ public class BattleManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ToughEnemy();
+        //ToughEnemy();
         EnemyAppearanceRandom();
         EnemySelectMethod();
         EnemyGenerate();
@@ -44,7 +53,15 @@ public class BattleManager : MonoBehaviour
 
     private void StartText()
     {
-        BattleTextPanelText.text = "敵があらわれた！\nどうするぅ？";
+        switch (toughBool)
+        {
+            case false:
+                BattleTextPanelText.text = "敵があらわれた！\nどうするぅ？";
+                break;
+            case true:
+                BattleTextPanelText.text = "強敵だ・・・！\nどうするぅ？";
+                break;
+        }
     }
 
     // 「こうげき」ボタン
@@ -415,4 +432,7 @@ public class BattleManager : MonoBehaviour
     {
         toughBool = true;
     }
+
+    // サイコロ
+
 }
