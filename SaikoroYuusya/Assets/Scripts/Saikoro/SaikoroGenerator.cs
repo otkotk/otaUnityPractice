@@ -48,9 +48,9 @@ public class SaikoroGenerator : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        InsertionGameObject();
-        ShuffleSaikoro();
-        ChangeColor();
+        //InsertionGameObject();
+        //ShuffleSaikoro();
+        //ChangeColor();
     }
 
     // Update is called once per frame
@@ -59,8 +59,10 @@ public class SaikoroGenerator : MonoBehaviour
 
     }
 
+
     public void ChangeColor()
     {
+        // サイコロパネルのテキストをランダムに入れ替えて表示
         for(int i=0; i<saikoro_2.Length; i++)
         {
             switch (saikoro_2[i])
@@ -76,6 +78,10 @@ public class SaikoroGenerator : MonoBehaviour
                     break;
             }
         }
+
+        StartCoroutine("RouletteSaikoro");
+
+        // オレンジ色のルーレットを動かす
         //childObj = GameObject.FindGameObjectsWithTag("Saikoros");
         //int indexxx = 0;
         //foreach(GameObject gb in childObj)
@@ -95,6 +101,33 @@ public class SaikoroGenerator : MonoBehaviour
         //    indexxx += 1;
         //    gb.GetComponent<Image>().color = new Color(0.843f, 0.627f, 0.294f, 0.785f);
         //}
+    }
+    IEnumerator RouletteSaikoro()
+    {
+        bool stoping = true;
+        int randNum;
+        System.Random random = new System.Random();
+        GameObject[] targetSaikoro = GameObject.FindGameObjectsWithTag("Saikoros");
+        while(!Input.GetMouseButtonDown(0) == true)
+        {
+            foreach(GameObject ga in targetSaikoro)
+            {
+                ga.GetComponent<Image>().color = new Color(0.843f, 0.627f, 0.294f, 0.0f);
+            }
+            randNum = random.Next(0, 8);
+            targetSaikoro[randNum].GetComponent<Image>().color = new Color(0.843f, 0.627f, 0.294f, 0.785f);
+            yield return new WaitForSeconds(0.025f);
+            //if(Input.touchCount > 0)
+            //{
+            //    Touch touch = Input.GetTouch(0);
+            //}
+            //if(Input.GetMouseButtonDown(0)){
+            //    stoping = false;
+            //}
+        }
+        yield return new WaitForSeconds(1.0f);
+        GameObject bm = GameObject.FindWithTag("BattleManagerTag");
+        bm.GetComponent<BattleManager>().CoroutineEnemyAttackAccept();
     }
 
     // サイコロの中身をシャッフルする

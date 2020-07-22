@@ -39,6 +39,9 @@ public class BattleManager : MonoBehaviour
     private int[] saikoro_1 = new int[] { 1, 1, 1, 1, 1, 2, 2, 3 };
     private int[] saikoro_2;
 
+    // サイコロパネルを入れる
+    public GameObject saikoroPanel;
+
 
 
     // Use this for initialization
@@ -70,6 +73,26 @@ public class BattleManager : MonoBehaviour
                 break;
         }
     }
+    IEnumerator saikoro()
+    {
+        saikoroPanel.SetActive(true);
+        yield return BattleTextPanelText.text = "画面をタップすると、ルーレットが止まりまぁす";
+        GameObject sm = GameObject.FindWithTag("SaikoroManagerTag");
+        sm.GetComponent<SaikoroGenerator>().InsertionGameObject();
+        sm.GetComponent<SaikoroGenerator>().ShuffleSaikoro();
+        sm.GetComponent<SaikoroGenerator>().ChangeColor();
+        //while (!Input.GetMouseButtonDown(0))
+        //{
+        //    yield return null;
+        //}
+        //yield return new WaitForSeconds(1.5f);
+        //StartCoroutine("EnemyAttackAccept");
+    }
+
+    public void CoroutineEnemyAttackAccept()
+    {
+        StartCoroutine("EnemyAttackAccept");
+    }
 
     // 「こうげき」ボタン
     // プレイヤーの攻撃メソッド
@@ -81,6 +104,7 @@ public class BattleManager : MonoBehaviour
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonInactive();
 
+        StartCoroutine("saikoro");
         //if (!GameObject.FindWithTag("Selected"))
         //{
         //    EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -88,16 +112,18 @@ public class BattleManager : MonoBehaviour
         //}
         //EnemyTag = GameObject.FindWithTag("Selected");
 
-        BattleTextPanelText.text = "野獣先輩の攻撃ッッッ";
-        dSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttack();
-        Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
 
-        StartCoroutine("EnemyAttackAccept");
+        //StartCoroutine("EnemyAttackAccept");
     }
     IEnumerator EnemyAttackAccept()
     {
+        yield return new WaitForSeconds(0.5f);
+        BattleTextPanelText.text = "野獣先輩の攻撃ッッッ";
+        dSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttack();
+        //Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
         EnemyTag = GameObject.FindWithTag("Selected");
         yield return new WaitForSeconds(0.5f);
+
         string enemyObjName = EnemyTag.name;
         Debug.Log(EnemyTag.tag);
 
@@ -265,6 +291,7 @@ public class BattleManager : MonoBehaviour
     IEnumerator PlayerAttackAccept()
     {
         yield return BattleTextPanelText.text = "敵が襲いかかる...!";
+        saikoroPanel.SetActive(false);
         yield return new WaitForSeconds(1.0f);
         yield return BattleTextPanelText.text = "";
         if (GameObject.FindWithTag("Selected"))

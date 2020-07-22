@@ -1193,7 +1193,7 @@ RectTransform:
   m_Children:
   - {fileID: 171894230}
   m_Father: {fileID: 940896693}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2362,7 +2362,7 @@ RectTransform:
   m_Children:
   - {fileID: 957479602}
   m_Father: {fileID: 940896693}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -2574,8 +2574,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 442035496}
   - {fileID: 930919967}
+  - {fileID: 442035496}
   - {fileID: 252156641}
   - {fileID: 529517940}
   - {fileID: 899376520}
@@ -2832,7 +2832,6 @@ GameObject:
   - component: {fileID: 1016609338}
   - component: {fileID: 1016609340}
   - component: {fileID: 1016609339}
-  - component: {fileID: 1016609341}
   m_Layer: 5
   m_Name: SaikoroAttackPanel
   m_TagString: Untagged
@@ -2904,43 +2903,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016609337}
   m_CullTransparentMesh: 0
---- !u!114 &1016609341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016609337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ec121b462e624fb28f4fa3a98fa04a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  childObj: []
-  suc_1: {fileID: 1768879602}
-  fai_1: {fileID: 1303778284}
-  cri_1: {fileID: 515413719}
-  suc_2: {fileID: 1705488132}
-  fai_2: {fileID: 1963302845}
-  cri_2: {fileID: 1512525232}
-  suc_3: {fileID: 1606310034}
-  fai_3: {fileID: 1765286936}
-  cri_3: {fileID: 567551545}
-  suc_4: {fileID: 1078879153}
-  fai_4: {fileID: 1713751995}
-  cri_4: {fileID: 1234101874}
-  suc_5: {fileID: 1438673182}
-  fai_5: {fileID: 790535035}
-  cri_5: {fileID: 312484058}
-  suc_6: {fileID: 974176898}
-  fai_6: {fileID: 1156059497}
-  cri_6: {fileID: 1833155371}
-  suc_7: {fileID: 58592660}
-  fai_7: {fileID: 353305427}
-  cri_7: {fileID: 789881806}
-  suc_8: {fileID: 185981135}
-  fai_8: {fileID: 538909554}
-  cri_8: {fileID: 2086210471}
 --- !u!1 &1078879153
 GameObject:
   m_ObjectHideFlags: 0
@@ -4970,7 +4932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1976453002
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5197,7 +5159,7 @@ GameObject:
   - component: {fileID: 2116046573}
   m_Layer: 0
   m_Name: BattleManager
-  m_TagString: Untagged
+  m_TagString: BattleManagerTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5216,6 +5178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BattleTextPanel: {fileID: 272600969}
   camera: {fileID: 1368522970}
+  saikoroPanel: {fileID: 1976453001}
 --- !u!4 &2116046572
 Transform:
   m_ObjectHideFlags: 0
@@ -5242,6 +5205,101 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe096e3f8743c4489c6f7d9b8a41144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2128336918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128336919}
+  - component: {fileID: 2128336920}
+  m_Layer: 0
+  m_Name: SaikoroManager
+  m_TagString: SaikoroManagerTag
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2128336919
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128336918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 470.15958, y: 251.13635, z: -39.5625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2128336920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128336918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec121b462e624fb28f4fa3a98fa04a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  childObj: []
+  sucs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fais:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  cris:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  suc_1: {fileID: 1768879602}
+  fai_1: {fileID: 1303778284}
+  cri_1: {fileID: 515413719}
+  suc_2: {fileID: 1705488132}
+  fai_2: {fileID: 1963302845}
+  cri_2: {fileID: 1512525232}
+  suc_3: {fileID: 1606310034}
+  fai_3: {fileID: 1765286936}
+  cri_3: {fileID: 567551545}
+  suc_4: {fileID: 1078879153}
+  fai_4: {fileID: 1713751995}
+  cri_4: {fileID: 1234101874}
+  suc_5: {fileID: 1438673182}
+  fai_5: {fileID: 790535035}
+  cri_5: {fileID: 312484058}
+  suc_6: {fileID: 974176898}
+  fai_6: {fileID: 1156059497}
+  cri_6: {fileID: 1833155371}
+  suc_7: {fileID: 58592660}
+  fai_7: {fileID: 353305427}
+  cri_7: {fileID: 789881806}
+  suc_8: {fileID: 185981135}
+  fai_8: {fileID: 538909554}
+  cri_8: {fileID: 2086210471}
 --- !u!1001 &5206218788599265873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5297,7 +5355,7 @@ PrefabInstance:
     - target: {fileID: 5206218789210592982, guid: bf69273c29df04bdfb4408c087547671,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5206218789210592982, guid: bf69273c29df04bdfb4408c087547671,
         type: 3}
