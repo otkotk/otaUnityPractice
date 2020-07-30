@@ -22,7 +22,7 @@ public class PlayerInstance : MonoBehaviour
     {
         Weapon weapon = new Weapon();
         weapon.SelectWeapon(player.BringWeapon);
-        double damage = (player.ATK + weapon.ATK) * 5 / 3 * 1.25;
+        double damage = ((player.ATK + weapon.ATK) * 5) / 3 * 1.25;
         int weAttr = weapon.WeaponAttribute;
         int maAttr = weapon.WeaponMagicAttribute;
         //int maAttr = 3;

@@ -11,7 +11,7 @@ public abstract class Enemies : AbsCharacter, IBattleCommand
     // 通常攻撃のロジック(暫定) -> (this.atk * 5) / 3 * 1.25
     public (int, int, int) NomalAttack(int atk, int we_atk, int we_atrr, int ma_attr)
     {
-        double damage = (atk + we_atk) * 5 / 3 * 1.25;
+        double damage = ((atk + we_atk) * 5) / 3 * 1.25;
         int weAttr = we_atrr;
         int maAttr = we_atrr;
 

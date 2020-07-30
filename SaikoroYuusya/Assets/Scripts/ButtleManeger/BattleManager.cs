@@ -48,7 +48,7 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         ShuffleSaikoro();
-        //ToughEnemy();
+        ToughEnemy();
         EnemyAppearanceRandom();
         EnemySelectMethod();
         EnemyGenerate();
@@ -73,6 +73,7 @@ public class BattleManager : MonoBehaviour
                 break;
         }
     }
+
     IEnumerator saikoro()
     {
         saikoroPanel.SetActive(true);
@@ -115,6 +116,16 @@ public class BattleManager : MonoBehaviour
 
         //StartCoroutine("EnemyAttackAccept");
     }
+
+    public void MagicAttack()
+    {
+        Destroy(camera.GetComponent<Physics2DRaycaster>());
+        ButtonInteractable buttonInteractable = new ButtonInteractable();
+        buttonInteractable.ButtonInactive();
+
+        StartCoroutine("saikoro");
+    }
+
     IEnumerator EnemyAttackAccept(string cName)
     {
         yield return new WaitForSeconds(0.5f);
