@@ -866,7 +866,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.25"
+  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.5"
 --- !u!222 &312484061
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1490,7 +1490,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.25"
+  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.5"
 --- !u!222 &515413722
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1854,7 +1854,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.25"
+  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.5"
 --- !u!222 &567551548
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2088,7 +2088,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.25"
+  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.5"
 --- !u!222 &789881809
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2418,7 +2418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -267, y: 84.1}
+  m_AnchoredPosition: {x: -267, y: 84}
   m_SizeDelta: {x: 670, y: 195}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &930919968
@@ -3239,7 +3239,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.25"
+  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.5"
 --- !u!222 &1234101877
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3807,7 +3807,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.25"
+  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.5"
 --- !u!222 &1512525235
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4561,7 +4561,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.25"
+  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.5"
 --- !u!222 &1833155374
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5104,7 +5104,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.25"
+  m_Text: "\u4F1A\u5FC3\u306E\u4E00\u6483 \xD71.5"
 --- !u!222 &2086210474
 CanvasRenderer:
   m_ObjectHideFlags: 0

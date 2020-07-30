@@ -105,7 +105,7 @@ public class SaikoroGenerator : MonoBehaviour
     IEnumerator RouletteSaikoro()
     {
         bool stoping = true;
-        int randNum;
+        int randNum = 0;
         System.Random random = new System.Random();
         GameObject[] targetSaikoro = GameObject.FindGameObjectsWithTag("Saikoros");
         while(!Input.GetMouseButtonDown(0) == true)
@@ -125,9 +125,27 @@ public class SaikoroGenerator : MonoBehaviour
             //    stoping = false;
             //}
         }
+
+        // オレンジ色の帯がついたオブジェクトの、sucs, fais, cris を判断する
+        Debug.Log(randNum);
+        int trueCounter = 0;
+        string childObjName = "";
+        for(int i=0; i<4; i++)
+        {
+            GameObject childObj = targetSaikoro[randNum].transform.GetChild(i).gameObject;
+            if(childObj.activeSelf == true)
+            {
+                trueCounter++;
+                if(trueCounter == 2)
+                {
+                    childObjName = childObj.name;
+                }
+            }
+        }
+        Debug.Log(childObjName);
         yield return new WaitForSeconds(1.0f);
         GameObject bm = GameObject.FindWithTag("BattleManagerTag");
-        bm.GetComponent<BattleManager>().CoroutineEnemyAttackAccept();
+        bm.GetComponent<BattleManager>().CoroutineEnemyAttackAccept(childObjName);
     }
 
     // サイコロの中身をシャッフルする
