@@ -104,26 +104,27 @@ public class SaikoroGenerator : MonoBehaviour
     }
     IEnumerator RouletteSaikoro()
     {
-        bool stoping = true;
+        bool stopping = false;
         int randNum = 0;
         System.Random random = new System.Random();
         GameObject[] targetSaikoro = GameObject.FindGameObjectsWithTag("Saikoros");
-        while(!Input.GetMouseButtonDown(0) == true)
+        while(Input.GetMouseButtonDown(0) != true && Input.GetMouseButtonUp(0) != true && Input.GetMouseButton(0) != true && stopping == false)
         {
+            yield return new WaitForSeconds(0.02f);
             foreach(GameObject ga in targetSaikoro)
             {
                 ga.GetComponent<Image>().color = new Color(0.843f, 0.627f, 0.294f, 0.0f);
             }
             randNum = random.Next(0, 8);
             targetSaikoro[randNum].GetComponent<Image>().color = new Color(0.843f, 0.627f, 0.294f, 0.785f);
-            yield return new WaitForSeconds(0.025f);
             //if(Input.touchCount > 0)
             //{
             //    Touch touch = Input.GetTouch(0);
             //}
-            //if(Input.GetMouseButtonDown(0)){
-            //    stoping = false;
-            //}
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonUp(0))
+            {
+                stopping = true;
+            }
         }
 
         // オレンジ色の帯がついたオブジェクトの、sucs, fais, cris を判断する
