@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerInstance : MonoBehaviour
 {
     Player player = new Player();
+    int[] prevStatus = new int[6];
+    int[] updateStatus = new int[6];
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,15 @@ public class PlayerInstance : MonoBehaviour
     }
 
     // レベルアップ
+    //public void LevelUpTest()
+    //{
+    //    player.LevelUpTest();
+    //}
+    public (int[], int[]) LevelUpConfirm(int getEXP)
+    {
+        (int[] p_status, int[] u_status) statuses = player.PlayerExpManager(getEXP);
+        return (statuses.p_status, statuses.u_status);
+    }
 
     // ジョブをセットする
     public void SetPlayerJob(int jobID)

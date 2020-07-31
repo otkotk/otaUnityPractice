@@ -35,10 +35,6 @@ public class BattleManager : MonoBehaviour
     // 強敵
     private bool toughBool = false;
 
-    // サイコロで決める
-    private int[] saikoro_1 = new int[] { 1, 1, 1, 1, 1, 2, 2, 3 };
-    private int[] saikoro_2;
-
     // サイコロパネルを入れる
     public GameObject saikoroPanel;
 
@@ -47,8 +43,7 @@ public class BattleManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ShuffleSaikoro();
-        ToughEnemy();
+        //ToughEnemy();
         EnemyAppearanceRandom();
         EnemySelectMethod();
         EnemyGenerate();
@@ -58,7 +53,7 @@ public class BattleManager : MonoBehaviour
         EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
         BattleTextPanelText = BattleTextPanel.GetComponent<Text>();
         StartText();
-        //ShowSaikoro();
+        PlayerTag.GetComponent<PlayerInstance>().DisplayStatus();
     }
 
     private void StartText()
@@ -74,14 +69,14 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    IEnumerator saikoro()
+    IEnumerator saikoro(string actionJudge)
     {
         saikoroPanel.SetActive(true);
         yield return BattleTextPanelText.text = "画面をタップすると、ルーレットが止まりまぁす";
         GameObject sm = GameObject.FindWithTag("SaikoroManagerTag");
         sm.GetComponent<SaikoroGenerator>().InsertionGameObject();
-        sm.GetComponent<SaikoroGenerator>().ShuffleSaikoro();
-        sm.GetComponent<SaikoroGenerator>().ChangeColor();
+        sm.GetComponent<SaikoroGenerator>().ShuffleSaikoro(actionJudge);
+        sm.GetComponent<SaikoroGenerator>().ChangeColor(actionJudge);
         //while (!Input.GetMouseButtonDown(0))
         //{
         //    yield return null;
@@ -90,7 +85,7 @@ public class BattleManager : MonoBehaviour
         //StartCoroutine("EnemyAttackAccept");
     }
 
-    public void CoroutineEnemyAttackAccept(string cName)
+    public void CoroutineEnemyAttackAccept(string cName, string action_j)
     {
         StartCoroutine(EnemyAttackAccept(cName));
     }
@@ -101,11 +96,12 @@ public class BattleManager : MonoBehaviour
     // 全体攻撃は、別で作る
     public void NomalAttack()
     {
+        string action_j = "nomal_attack";
         Destroy(camera.GetComponent<Physics2DRaycaster>());
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonInactive();
 
-        StartCoroutine("saikoro");
+        StartCoroutine(saikoro(action_j));
         //if (!GameObject.FindWithTag("Selected"))
         //{
         //    EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -119,11 +115,12 @@ public class BattleManager : MonoBehaviour
 
     public void MagicAttack()
     {
+        string action_j = "magic_attack";
         Destroy(camera.GetComponent<Physics2DRaycaster>());
         ButtonInteractable buttonInteractable = new ButtonInteractable();
         buttonInteractable.ButtonInactive();
 
-        StartCoroutine("saikoro");
+        StartCoroutine(saikoro(action_j));
     }
 
     IEnumerator EnemyAttackAccept(string cName)
@@ -174,7 +171,8 @@ public class BattleManager : MonoBehaviour
                         enemyEncounter--;
                         yield return BattleTextPanelText.text = "スライムは無残にも崩れ落ちた";
                         bufEXP += EnemyTag.GetComponent<SlimeInstance>().GetEXP();
-                        if(enemyEncounter != 0)
+                        EnemyTag.GetComponent<SlimeInstance>().ObjectDestroy();
+                        if (enemyEncounter != 0)
                         {
                         EnemyTag = GameObject.FindWithTag("EnemyTag");
                         EnemyTag.tag = "Selected";
@@ -194,6 +192,7 @@ public class BattleManager : MonoBehaviour
                         yield return BattleTextPanelText.text = "キューブスライムは無残にも崩れ落ちた";
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<CubeSlimeInstance>().GetEXP();
+                        EnemyTag.GetComponent<CubeSlimeInstance>().ObjectDestroy();
                         if (enemyEncounter != 0)
                         {
                             EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -214,6 +213,7 @@ public class BattleManager : MonoBehaviour
                         yield return BattleTextPanelText.text = "とろけるスライムは無残にも崩れ落ちた";
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<MeltSlimeInstance>().GetEXP();
+                        EnemyTag.GetComponent<MeltSlimeInstance>().ObjectDestroy();
                         if (enemyEncounter != 0)
                         {
                             EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -234,6 +234,7 @@ public class BattleManager : MonoBehaviour
                         yield return BattleTextPanelText.text = "ミニプラントは無残にも崩れ落ちた";
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<MiniPlantInstance>().GetEXP();
+                        EnemyTag.GetComponent<MiniPlantInstance>().ObjectDestroy();
                         if (enemyEncounter != 0)
                         {
                             EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -254,6 +255,7 @@ public class BattleManager : MonoBehaviour
                         yield return BattleTextPanelText.text = "ヌットリアは無残にも崩れ落ちた";
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<MouseInstance>().GetEXP();
+                        EnemyTag.GetComponent<MouseInstance>().ObjectDestroy();
                         if (enemyEncounter != 0)
                         {
                             EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -274,6 +276,7 @@ public class BattleManager : MonoBehaviour
                         yield return BattleTextPanelText.text = "野うさぎは無残にも崩れ落ちた";
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<RabbitInstance>().GetEXP();
+                        EnemyTag.GetComponent<RabbitInstance>().ObjectDestroy();
                         if (enemyEncounter != 0)
                         {
                             EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -294,6 +297,7 @@ public class BattleManager : MonoBehaviour
                         yield return BattleTextPanelText.text = "盗賊は無残にも崩れ落ちた";
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<ThiefInstance>().GetEXP();
+                        EnemyTag.GetComponent<ThiefInstance>().ObjectDestroy();
                         if (enemyEncounter != 0)
                         {
                             EnemyTag = GameObject.FindWithTag("EnemyTag");
@@ -313,6 +317,7 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             yield return BattleTextPanelText.text = "経験値 : " + bufEXP;
             yield return BattleTextPanelText.text += "\n戦いに勝利した＾＾";
+            Debug.Log(bufEXP);
             if (toughBool == true)
             {
                 toughBool = false;
@@ -512,20 +517,4 @@ public class BattleManager : MonoBehaviour
     {
         toughBool = true;
     }
-
-    // サイコロの中身をシャッフルする
-    public void ShuffleSaikoro()
-    {
-        saikoro_2 = saikoro_1.OrderBy(i => Guid.NewGuid()).ToArray();
-    }
-
-    // サイコロがシャッフルされているか確認する
-    public void ShowSaikoro()
-    {
-        foreach(int i in saikoro_2)
-        {
-            BattleTextPanelText.text += i;
-        }
-    }
-
 }

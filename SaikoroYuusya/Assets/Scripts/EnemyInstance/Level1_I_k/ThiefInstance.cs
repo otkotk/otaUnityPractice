@@ -101,7 +101,11 @@ public class ThiefInstance : MonoBehaviour, IEnemy
     // 倒していたら、Hierarchyからオブジェクトを削除する
     public int GetEXP()
     {
-        Destroy(this.gameObject);
         return thief.EXP;
+    }
+
+    public void ObjectDestroy()
+    {
+        Destroy(this.gameObject);
     }
 }

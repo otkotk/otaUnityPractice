@@ -40,7 +40,7 @@ public class SaikoroGenerator : MonoBehaviour
 
     // サイコロで決める
     private int[] saikoro_1 = new int[] { 1, 1, 1, 1, 1, 2, 2, 3 };
-    private int[] saikoro_magic = new int[] { 1, 1, 1, 1, 1, 2, 2, 2 };
+    private int[] saikoro_magic = new int[] { 1, 1, 1, 1, 1, 1, 2, 2 };
     private int[] saikoro_2;
 
 
@@ -54,7 +54,7 @@ public class SaikoroGenerator : MonoBehaviour
         //ChangeColor();
     }
 
-    public void ChangeColor()
+    public void ChangeColor(string actionJudge)
     {
         // サイコロパネルのテキストをランダムに入れ替えて表示
         for(int i=0; i<saikoro_2.Length; i++)
@@ -73,7 +73,7 @@ public class SaikoroGenerator : MonoBehaviour
             }
         }
 
-        StartCoroutine("RouletteSaikoro");
+        StartCoroutine(RouletteSaikoro(actionJudge));
 
         // オレンジ色のルーレットを動かす
         //childObj = GameObject.FindGameObjectsWithTag("Saikoros");
@@ -96,7 +96,7 @@ public class SaikoroGenerator : MonoBehaviour
         //    gb.GetComponent<Image>().color = new Color(0.843f, 0.627f, 0.294f, 0.785f);
         //}
     }
-    IEnumerator RouletteSaikoro()
+    IEnumerator RouletteSaikoro(string action_j)
     {
         bool stopping = false;
         int randNum = 0;
@@ -140,13 +140,21 @@ public class SaikoroGenerator : MonoBehaviour
         Debug.Log(childObjName);
         yield return new WaitForSeconds(1.0f);
         GameObject bm = GameObject.FindWithTag("BattleManagerTag");
-        bm.GetComponent<BattleManager>().CoroutineEnemyAttackAccept(childObjName);
+        bm.GetComponent<BattleManager>().CoroutineEnemyAttackAccept(childObjName, action_j);
     }
 
     // サイコロの中身をシャッフルする
-    public void ShuffleSaikoro()
+    public void ShuffleSaikoro(string actionJudge)
     {
-        saikoro_2 = saikoro_1.OrderBy(i => Guid.NewGuid()).ToArray();
+        switch (actionJudge)
+        {
+            case "nomal_attack":
+                saikoro_2 = saikoro_1.OrderBy(i => Guid.NewGuid()).ToArray();
+                break;
+            case "magic_attack":
+                saikoro_2 = saikoro_magic.OrderBy(i => Guid.NewGuid()).ToArray();
+                break;
+        }
     }
 
     // Serializefieldのオブジェクトを、配列に格納する

@@ -102,7 +102,11 @@ public class CubeSlimeInstance : MonoBehaviour, IEnemy
     // 倒していたら、Hierarchyからオブジェクトを削除する
     public int GetEXP()
     {
-        Destroy(this.gameObject);
         return cubeSlime.EXP;
+    }
+
+    public void ObjectDestroy()
+    {
+        Destroy(this.gameObject);
     }
 }

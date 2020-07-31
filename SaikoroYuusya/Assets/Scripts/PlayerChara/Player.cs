@@ -47,14 +47,14 @@ public class Player : AbsCharacter
     public void DisplayStatus()
     {
         Debug.Log("HP:" + HP
-            + " MP:" + MP
-            + " ATK:" + ATK
-            + " DEF:" + DEF
-            + " Mental:" + Mental
-            + " AGI:" + AGI
-            + " EXP:" + EXP
-            + " アイテム:" + Pocket[0]
-            + "ジョブ:" + job);
+            + "\nMP:" + MP
+            + "\nATK:" + ATK
+            + "\nDEF:" + DEF
+            + "\nMental:" + Mental
+            + "\nAGI:" + AGI
+            + "\nEXP:" + EXP
+            + "\nアイテム:" + Pocket[0]
+            + "\nジョブ:" + job);
     }
 
     // プレイヤーのジョブを決める
@@ -75,7 +75,7 @@ public class Player : AbsCharacter
                 job = 2;
                 break;
             case 3:
-                Debug.Log("弓使いです。 ATK:1.5倍 AGI:1.5倍 DEF:0.5倍");
+                Debug.Log("狩人です。 ATK:1.5倍 AGI:1.5倍 DEF:0.5倍");
                 job = 3;
                 break;
             case 4:
@@ -85,63 +85,87 @@ public class Player : AbsCharacter
         }
     }
 
+    //public void LevelUpTest()
+    //{
+    //    ATK += 1000;
+    //}
+
     // 経験値の管理、レベルアップ
     // ジョブによって倍率を変える
     // ステータス確認のため、タプる
-    public void PlayerExpManager(int getEXP)
+    public (int[], int[]) PlayerExpManager(int getEXP)
     {
+        int[] prevStatus = { HP, MP, ATK, DEF, Mental, AGI };
+        int[] updateStatus = new int[6];
         EXP += getEXP;
         if(EXP >= thresholdExp)
         {
-            level++;
-            thresholdExp = level * 10;
-            double _HPup = 15.0;
-            double _MPup = 4.0;
-            double _ATKup = 2.0;
-            double _DEFup = 2.0;
-            double _Mentalup = 2.0;
-            double _AGIup = 2.0;
-
-            switch (job)
+            while(EXP >= thresholdExp)
             {
-                // 剣士
-                case 1:
-                    HP += (int)(_HPup * 1.5);
-                    MP += (int)_MPup;
-                    ATK += (int)_ATKup;
-                    DEF += (int)(_DEFup * 1.5);
-                    Mental += (int)(_Mentalup * 0.5);
-                    AGI += (int)_AGIup;
-                    break;
-                // 魔法使い
-                case 2:
-                    HP += (int)(_HPup *0.5);
-                    MP += (int)(_MPup * 1.5);
-                    ATK += (int)_ATKup;
-                    DEF += (int)_DEFup;
-                    Mental += (int)(_Mentalup * 1.5);
-                    AGI += (int)_AGIup;
-                    break;
-                // 弓使い
-                case 3:
-                    HP += (int)_HPup;
-                    MP += (int)_MPup;
-                    ATK += (int)(_ATKup * 1.5);
-                    DEF += (int)(_DEFup * 0.5);
-                    Mental += (int)_Mentalup;
-                    AGI += (int)(_AGIup * 1.5);
-                    break;
-                // 遊び人
-                case 4:
-                    HP += (int)_HPup;
-                    MP += (int)_MPup;
-                    ATK += (int)_ATKup;
-                    DEF += (int)_DEFup;
-                    Mental += (int)_Mentalup;
-                    AGI += (int)(_AGIup * 2.5);
-                    break;
+                level++;
+                thresholdExp = level * 10;
+                double _HPup = 15.0;
+                double _MPup = 4.0;
+                double _ATKup = 2.0;
+                double _DEFup = 2.0;
+                double _Mentalup = 2.0;
+                double _AGIup = 2.0;
+
+                switch (job)
+                {
+                    // 剣士
+                    case 1:
+                        HP += (int)(_HPup * 1.5);
+                        MP += (int)_MPup;
+                        ATK += (int)_ATKup;
+                        DEF += (int)(_DEFup * 1.5);
+                        Mental += (int)(_Mentalup * 0.5);
+                        AGI += (int)_AGIup;
+                        break;
+                    // 魔法使い
+                    case 2:
+                        HP += (int)(_HPup *0.5);
+                        MP += (int)(_MPup * 1.5);
+                        ATK += (int)_ATKup;
+                        DEF += (int)_DEFup;
+                        Mental += (int)(_Mentalup * 1.5);
+                        AGI += (int)_AGIup;
+                        break;
+                    // 狩人
+                    case 3:
+                        HP += (int)_HPup;
+                        MP += (int)_MPup;
+                        ATK += (int)(_ATKup * 1.5);
+                        DEF += (int)(_DEFup * 0.5);
+                        Mental += (int)_Mentalup;
+                        AGI += (int)(_AGIup * 1.5);
+                        break;
+                    // 遊び人
+                    case 4:
+                        HP += (int)_HPup;
+                        MP += (int)_MPup;
+                        ATK += (int)_ATKup;
+                        DEF += (int)_DEFup;
+                        Mental += (int)_Mentalup;
+                        AGI += (int)(_AGIup * 2.5);
+                        break;
+                }
+                updateStatus[0] = HP;
+                updateStatus[1] = MP;
+                updateStatus[2] = ATK;
+                updateStatus[3] = DEF;
+                updateStatus[4] = Mental;
+                updateStatus[5] = AGI;
             }
         }
+        else
+        {
+            for(int i=0; i<updateStatus.Length; i++)
+            {
+                updateStatus[i] = 0;
+            }
+        }
+        return (prevStatus, updateStatus);
     }
 
     public int NomalAttackAccept(int damage, int weAttr, int maAttr, int we_weak, int arm_attr, int ma_attr)

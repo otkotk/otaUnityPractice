@@ -101,7 +101,11 @@ public class RabbitInstance : MonoBehaviour, IEnemy
     // 倒していたら、Hierarchyからオブジェクトを削除する
     public int GetEXP()
     {
-        Destroy(this.gameObject);
         return rabbit.EXP;
+    }
+
+    public void ObjectDestroy()
+    {
+        Destroy(this.gameObject);
     }
 }
