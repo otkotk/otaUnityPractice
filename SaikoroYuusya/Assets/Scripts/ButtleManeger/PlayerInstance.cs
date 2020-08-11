@@ -48,10 +48,24 @@ public class PlayerInstance : MonoBehaviour
     //public void LevelUpTest()
     //{
     //    player.LevelUpTest();
+    //    Debug.Log("子クラス:" + player.ATK);
     //}
     public (int[], int[]) LevelUpConfirm(int getEXP)
     {
         (int[] p_status, int[] u_status) statuses = player.PlayerExpManager(getEXP);
+        Debug.Log(
+            "hp" + statuses.p_status[0] +
+            "mp" + statuses.p_status[1] +
+            "atk" + statuses.p_status[2] +
+            "def" + statuses.p_status[3] +
+            "mental" + statuses.p_status[4] +
+            "agi" + statuses.p_status[5] +
+            "\nupdate_hp" + player.HP +
+            "update_mp" + player.MP +
+            "update_atk" + player.ATK +
+            "update_def" + player.DEF +
+            "update_mental" + player.Mental +
+            "update_agi" + player.AGI);
         return (statuses.p_status, statuses.u_status);
     }
 

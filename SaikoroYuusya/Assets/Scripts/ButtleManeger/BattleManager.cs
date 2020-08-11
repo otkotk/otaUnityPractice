@@ -43,7 +43,7 @@ public class BattleManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //ToughEnemy();
+        ToughEnemy();
         EnemyAppearanceRandom();
         EnemySelectMethod();
         EnemyGenerate();
@@ -131,7 +131,7 @@ public class BattleManager : MonoBehaviour
         {
             BattleTextPanelText.text = "サイコロの呪縛に打ち勝った！\n";
             yield return new WaitForSeconds(1.0f);
-            BattleTextPanelText.text += "プレイヤーの攻撃ッッッ\n";
+            BattleTextPanelText.text += "プレイヤーの攻撃ッ\n";
             dSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttack();
             //Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
         }
@@ -317,7 +317,7 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
             yield return BattleTextPanelText.text = "経験値 : " + bufEXP;
             yield return BattleTextPanelText.text += "\n戦いに勝利した＾＾";
-            Debug.Log(bufEXP);
+            PlayerTag.GetComponent<PlayerInstance>().LevelUpConfirm(bufEXP);
             if (toughBool == true)
             {
                 toughBool = false;

@@ -37,7 +37,7 @@ public class Player : AbsCharacter
         WeaponWeakAttribute = 0;
         MagicAttribute = 0;
 
-        job = 0;
+        job = 4;
         level = 1;
         thresholdExp = 20;
     }
@@ -85,10 +85,11 @@ public class Player : AbsCharacter
         }
     }
 
-    //public void LevelUpTest()
-    //{
-    //    ATK += 1000;
-    //}
+    public void LevelUpTest()
+    {
+        ATK += 1000;
+        Debug.Log("親クラス:" + ATK);
+    }
 
     // 経験値の管理、レベルアップ
     // ジョブによって倍率を変える
@@ -160,10 +161,12 @@ public class Player : AbsCharacter
         }
         else
         {
-            for(int i=0; i<updateStatus.Length; i++)
-            {
-                updateStatus[i] = 0;
-            }
+            updateStatus[0] = HP;
+            updateStatus[1] = MP;
+            updateStatus[2] = ATK;
+            updateStatus[3] = DEF;
+            updateStatus[4] = Mental;
+            updateStatus[5] = AGI;
         }
         return (prevStatus, updateStatus);
     }
