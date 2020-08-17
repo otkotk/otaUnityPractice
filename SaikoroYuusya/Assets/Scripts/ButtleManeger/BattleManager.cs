@@ -172,12 +172,6 @@ public class BattleManager : MonoBehaviour
                         yield return BattleTextPanelText.text = "スライムは無残にも崩れ落ちた";
                         bufEXP += EnemyTag.GetComponent<SlimeInstance>().GetEXP();
                         EnemyTag.GetComponent<SlimeInstance>().ObjectDestroy();
-                        if (enemyEncounter != 0)
-                        {
-                        EnemyTag = GameObject.FindWithTag("EnemyTag");
-                        EnemyTag.tag = "Selected";
-                        EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
-                        }
                     }
                     break;
                 case "CubeSlime(Clone)":
@@ -193,12 +187,6 @@ public class BattleManager : MonoBehaviour
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<CubeSlimeInstance>().GetEXP();
                         EnemyTag.GetComponent<CubeSlimeInstance>().ObjectDestroy();
-                        if (enemyEncounter != 0)
-                        {
-                            EnemyTag = GameObject.FindWithTag("EnemyTag");
-                            EnemyTag.tag = "Selected";
-                            EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
-                        }
                     }
                     break;
                 case "MeltSlime(Clone)":
@@ -214,12 +202,6 @@ public class BattleManager : MonoBehaviour
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<MeltSlimeInstance>().GetEXP();
                         EnemyTag.GetComponent<MeltSlimeInstance>().ObjectDestroy();
-                        if (enemyEncounter != 0)
-                        {
-                            EnemyTag = GameObject.FindWithTag("EnemyTag");
-                            EnemyTag.tag = "Selected";
-                            EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
-                        }
                     }
                     break;
                 case "MiniPlant(Clone)":
@@ -235,12 +217,6 @@ public class BattleManager : MonoBehaviour
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<MiniPlantInstance>().GetEXP();
                         EnemyTag.GetComponent<MiniPlantInstance>().ObjectDestroy();
-                        if (enemyEncounter != 0)
-                        {
-                            EnemyTag = GameObject.FindWithTag("EnemyTag");
-                            EnemyTag.tag = "Selected";
-                            EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
-                        }
                     }
                     break;
                 case "Mouse(Clone)":
@@ -256,12 +232,6 @@ public class BattleManager : MonoBehaviour
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<MouseInstance>().GetEXP();
                         EnemyTag.GetComponent<MouseInstance>().ObjectDestroy();
-                        if (enemyEncounter != 0)
-                        {
-                            EnemyTag = GameObject.FindWithTag("EnemyTag");
-                            EnemyTag.tag = "Selected";
-                            EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
-                        }
                     }
                     break;
                 case "Rabbit(Clone)":
@@ -277,12 +247,6 @@ public class BattleManager : MonoBehaviour
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<RabbitInstance>().GetEXP();
                         EnemyTag.GetComponent<RabbitInstance>().ObjectDestroy();
-                        if (enemyEncounter != 0)
-                        {
-                            EnemyTag = GameObject.FindWithTag("EnemyTag");
-                            EnemyTag.tag = "Selected";
-                            EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
-                        }
                     }
                     break;
                 case "Thief(Clone)":
@@ -298,14 +262,14 @@ public class BattleManager : MonoBehaviour
                         yield return new WaitForSeconds(0.5f);
                         bufEXP += EnemyTag.GetComponent<ThiefInstance>().GetEXP();
                         EnemyTag.GetComponent<ThiefInstance>().ObjectDestroy();
-                        if (enemyEncounter != 0)
-                        {
-                            EnemyTag = GameObject.FindWithTag("EnemyTag");
-                            EnemyTag.tag = "Selected";
-                            EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
-                        }
                     }
                     break;
+            }
+            if (enemyEncounter != 0)
+            {
+                EnemyTag = GameObject.FindWithTag("EnemyTag");
+                EnemyTag.tag = "Selected";
+                EnemyTag.GetComponent<EnemyCursor>().ObjectIsActive();
             }
         }
         // ここにエフェクトを追加する
@@ -385,7 +349,7 @@ public class BattleManager : MonoBehaviour
                     BattleTextPanelText.text += "盗賊は、";
                     break;
             }
-            Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
+            //Debug.Log("ダメージ:" + dSet.damage + "武器属性:" + dSet.weAttr + "魔法属性:" + dSet.maAttr);
             EdSet = PlayerTag.GetComponent<PlayerInstance>().NomalAttackAccept(dSet.damage, dSet.weAttr, dSet.maAttr);
             yield return BattleTextPanelText.text += "プレイヤーに" + EdSet + "ダメージ与えた\n";
             yield return new WaitForSeconds(1.0f);

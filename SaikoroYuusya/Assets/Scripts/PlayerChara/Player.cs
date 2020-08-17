@@ -37,7 +37,7 @@ public class Player : AbsCharacter
         WeaponWeakAttribute = 0;
         MagicAttribute = 0;
 
-        job = 4;
+        job = 0;
         level = 1;
         thresholdExp = 20;
     }
@@ -104,7 +104,7 @@ public class Player : AbsCharacter
             while(EXP >= thresholdExp)
             {
                 level++;
-                thresholdExp = level * 10;
+                thresholdExp += level * 10;
                 double _HPup = 15.0;
                 double _MPup = 4.0;
                 double _ATKup = 2.0;
@@ -114,6 +114,15 @@ public class Player : AbsCharacter
 
                 switch (job)
                 {
+                    // test
+                    case 0:
+                        HP += (int)_HPup;
+                        MP += (int)_MPup;
+                        ATK += (int)_ATKup;
+                        DEF += (int)_DEFup;
+                        Mental += (int)_Mentalup;
+                        AGI += (int)_AGIup;
+                        break;
                     // 剣士
                     case 1:
                         HP += (int)(_HPup * 1.5);

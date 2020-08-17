@@ -14,7 +14,7 @@ public class MeltSlime : Enemies
         DEF = 1;
         Mental = 0;
         AGI = 1;
-        EXP = 5;
+        EXP = 6;
         BringWeapon = null;
         BringArmor = null;
         WeaponWeakAttribute = 0;

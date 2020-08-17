@@ -14,7 +14,7 @@ public class Rabbit : Enemies
         DEF = 0;
         Mental = 1;
         AGI = 6;
-        EXP = 3;
+        EXP = 4;
         BringWeapon = null;
         BringArmor = null;
         WeaponWeakAttribute = 0;

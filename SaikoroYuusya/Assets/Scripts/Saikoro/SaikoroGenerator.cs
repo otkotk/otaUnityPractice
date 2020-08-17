@@ -39,7 +39,7 @@ public class SaikoroGenerator : MonoBehaviour
 
 
     // サイコロで決める
-    private int[] saikoro_1 = new int[] { 1, 1, 1, 1, 1, 1, 2, 3 };
+    private int[] saikoro_1 = new int[] { 1, 1, 1, 1, 2, 3, 2, 3 };
     private int[] saikoro_magic = new int[] { 1, 1, 1, 1, 1, 1, 2, 2 };
     private int[] saikoro_2;
 

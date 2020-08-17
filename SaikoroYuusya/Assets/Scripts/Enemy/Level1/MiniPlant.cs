@@ -14,7 +14,7 @@ public class MiniPlant : Enemies
         DEF = 5;
         Mental = 0;
         AGI = 1;
-        EXP = 3;
+        EXP = 4;
         BringWeapon = null;
         BringArmor = null;
         WeaponWeakAttribute = 0;

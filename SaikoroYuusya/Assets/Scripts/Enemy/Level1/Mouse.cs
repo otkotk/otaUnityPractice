@@ -14,7 +14,7 @@ public class Mouse : Enemies
         DEF = 0;
         Mental = 0;
         AGI = 8;
-        EXP = 4;
+        EXP = 5;
         BringWeapon = null;
         BringArmor = null;
         WeaponWeakAttribute = 0;

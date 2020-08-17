@@ -14,7 +14,7 @@ public class Slime : Enemies
         DEF = 0;
         Mental = 0;
         AGI = 1;
-        EXP = 3;
+        EXP = 4;
         BringWeapon = null;
         BringArmor = null;
         Weapon weapon = new Weapon();

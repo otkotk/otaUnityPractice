@@ -24,7 +24,7 @@ public class PlayerInstance : MonoBehaviour
     {
         Weapon weapon = new Weapon();
         weapon.SelectWeapon(player.BringWeapon);
-        double damage = ((player.ATK + weapon.ATK) * 5) / 3 * 1.25;
+        double damage = ((player.ATK + weapon.ATK) * 4.2) / 3 * 1.35;
         int weAttr = weapon.WeaponAttribute;
         int maAttr = weapon.WeaponMagicAttribute;
         //int maAttr = 3;
@@ -52,20 +52,36 @@ public class PlayerInstance : MonoBehaviour
     //}
     public (int[], int[]) LevelUpConfirm(int getEXP)
     {
+        int[] prevStatus = { player.HP, player.MP, player.ATK, player.DEF, player.Mental, player.AGI };
         (int[] p_status, int[] u_status) statuses = player.PlayerExpManager(getEXP);
         Debug.Log(
-            "hp" + statuses.p_status[0] +
-            "mp" + statuses.p_status[1] +
-            "atk" + statuses.p_status[2] +
-            "def" + statuses.p_status[3] +
-            "mental" + statuses.p_status[4] +
-            "agi" + statuses.p_status[5] +
-            "\nupdate_hp" + player.HP +
-            "update_mp" + player.MP +
-            "update_atk" + player.ATK +
-            "update_def" + player.DEF +
-            "update_mental" + player.Mental +
-            "update_agi" + player.AGI);
+            "\nhp : " + prevStatus[0] +
+            " - HP : " + player.HP +
+            "\nmp : " + prevStatus[1] +
+            " - MP : " + player.MP +
+            "\natk : " + prevStatus[2] +
+            " - ATK : " + player.ATK +
+            "\ndef : " + prevStatus[3] +
+            " - DEF : " + player.DEF +
+            "\nmental : " + prevStatus[4] +
+            " - Mental : " + player.Mental +
+            "\nagi : " + prevStatus[5] +
+            " - AGI : " + player.AGI
+            );
+        //Debug.Log(
+        //    "hp" + statuses.p_status[0] +
+        //    "mp" + statuses.p_status[1] +
+        //    "atk" + statuses.p_status[2] +
+        //    "def" + statuses.p_status[3] +
+        //    "mental" + statuses.p_status[4] +
+        //    "agi" + statuses.p_status[5] +
+        //    "\nupdate_hp" + player.HP +
+        //    "update_mp" + player.MP +
+        //    "update_atk" + player.ATK +
+        //    "update_def" + player.DEF +
+        //    "update_mental" + player.Mental +
+        //    "update_agi" + player.AGI
+        //    );
         return (statuses.p_status, statuses.u_status);
     }
 

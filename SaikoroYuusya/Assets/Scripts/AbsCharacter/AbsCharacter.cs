@@ -22,10 +22,12 @@
     private int agi;
     public int AGI { get { return this.agi; } set { this.agi = value; } }
 
-    private int exp; //現在の総経験値
+    // 累計の経験値
+    private int exp;
     public int EXP { get { return this.exp; } set { this.exp = value; } }
 
-    private string[] pocket = new string[20]; //アイテム入れ
+    // アイテム入れ
+    private string[] pocket = new string[20];
     public string[] Pocket { get { return this.pocket; } set { this.pocket = value; } }
 
     // 持っている武器
@@ -55,8 +57,8 @@
 
     // 武器属性に対する耐性。ダメージを1/3カットする。弱点と耐性が同じだった場合、ダメージは等倍になる。
     // (いらないかも)
-    private int armorAtrribute;
-    public int ArmorAttribute { get { return this.armorAtrribute; } set { this.armorAtrribute = value; } }
+    //private int armorAtrribute;
+    //public int ArmorAttribute { get { return this.armorAtrribute; } set { this.armorAtrribute = value; } }
 
     // キャラが持っている属性、キャラによって設定する。
     // 魔法属性に対する耐性。ダメージを1/3カットする。弱点と耐性が同じだった場合、ダメージは等倍になる。

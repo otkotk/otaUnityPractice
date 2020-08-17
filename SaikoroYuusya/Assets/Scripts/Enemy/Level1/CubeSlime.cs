@@ -14,7 +14,7 @@ public class CubeSlime : Enemies
         DEF = 0;
         Mental = 0;
         AGI = 1;
-        EXP = 4;
+        EXP = 6;
         BringWeapon = null;
         BringArmor = null;
         WeaponWeakAttribute = 0;
