@@ -1,2 +1,2 @@
 # otaUnityPractice
- This repository is ota-san practice space.
+12月、リリース予定のゲームです。
